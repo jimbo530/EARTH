@@ -1,0 +1,18 @@
+{
+  "name": "earth-token",
+  "version": "1.0.0",
+  "description": "EARTH - Deflationary rebase token with automated burn/buyback/LP via Reactor",
+  "scripts": {
+    "compile": "npx hardhat compile",
+    "build-deploy": "node tools/build-deploy-pages.js",
+    "serve": "npx serve deploy -l 8888"
+  },
+  "devDependencies": {
+    "hardhat": "^2.22.0",
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0"
+  },
+  "dependencies": {
+    "ethers": "^6.13.0",
+    "dotenv": "^16.4.0"
+  }
+}
