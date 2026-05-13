@@ -89,6 +89,17 @@ contract Reactor {
     ///         delta would have rounded to zero. Distributed on the next successful rebase.
     uint256 public undistributedMint;
 
+    /// @dev Reentrancy guard. The cooldown check already prevents same-function
+    ///      re-entry, but this is defense-in-depth and silences static analyzers.
+    uint256 private _entered = 1;
+
+    modifier nonReentrant() {
+        require(_entered == 1, "reentrant");
+        _entered = 2;
+        _;
+        _entered = 1;
+    }
+
     // ── Events ─────────────────────────────────────────────────────────────────
     event Executed(uint256 burned, uint256 minted, uint256 timestamp, address caller);
     event PoolAdded(uint256 indexed tokenId, address xToken, address poolAddr);
@@ -173,7 +184,7 @@ contract Reactor {
 
     /// @notice Process all pools: collect fees → burn EARTH → buy EARTH with X → deposit LP → rebase holders.
     ///         Reverts if called before COOLDOWN has elapsed since last execution.
-    function execute() external {
+    function execute() external nonReentrant {
         require(block.timestamp >= lastExecute + COOLDOWN, "cooldown");
         lastExecute = block.timestamp;
 
