@@ -5,7 +5,8 @@
   "scripts": {
     "compile": "npx hardhat compile",
     "build-deploy": "node tools/build-deploy-pages.js",
-    "serve": "npx serve deploy -l 8888"
+    "serve": "npx serve deploy -l 8888",
+    "test": "hardhat test"
   },
   "devDependencies": {
     "hardhat": "^2.22.0",
