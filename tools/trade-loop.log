@@ -1,0 +1,811 @@
+[2026-04-28T14:08:44] Trade loop starting — $0.1/trade, 1/min
+[2026-04-28T14:08:44] Wallet: 0xE2a4A8b9d77080c57799A94BA8eDeb2Dd6e0aC10
+[2026-04-28T14:08:44] Sequence: POOP→EARTH | EARTH→MfT | MfT→TGN | TGN→EARTH | EARTH→POOP | POOP→AZUSD | AZUSD→EARTH | EARTH→MfT | MfT→POOP
+[2026-04-28T14:08:44] Already approved POOP
+[2026-04-28T14:08:44] Already approved EARTH
+[2026-04-28T14:08:44] Already approved MfT
+[2026-04-28T14:08:44] Already approved TGN
+[2026-04-28T14:08:44] Already approved AZUSD
+[2026-04-28T14:08:44] 
+[2026-04-28T14:08:44] === Starting pair: POOP→EARTH — 200 trades of $0.1 ===
+[2026-04-28T14:08:44]   [1] ERROR: missing revert data
+[2026-04-28T14:11:55]   [4] ERROR: missing revert data
+[2026-04-28T14:18:23]   [10/200] POOP→EARTH | EARTH bal: 0.0610313380 | total: 8
+[2026-04-28T14:25:46]   [17] ERROR: nonce has already been used
+[2026-04-28T14:29:07]   [20/200] POOP→EARTH | EARTH bal: 0.0652125087 | total: 17
+[2026-04-28T14:39:54]   [30/200] POOP→EARTH | EARTH bal: 0.0698425959 | total: 27
+[2026-04-28T14:40:54]   [31] ERROR: missing revert data
+[2026-04-28T14:46:11]   [36] ERROR: missing revert data
+[2026-04-28T14:50:31]   [40/200] POOP→EARTH | EARTH bal: 0.0734997283 | total: 35
+[2026-04-28T15:01:28]   [50/200] POOP→EARTH | EARTH bal: 0.0780197462 | total: 45
+[2026-04-28T15:12:24]   [60/200] POOP→EARTH | EARTH bal: 0.0824287227 | total: 55
+[2026-04-28T15:23:05]   [70/200] POOP→EARTH | EARTH bal: 0.0868095797 | total: 65
+[2026-04-28T15:33:43]   [80/200] POOP→EARTH | EARTH bal: 0.0911461253 | total: 75
+[2026-04-28T15:44:28]   [90/200] POOP→EARTH | EARTH bal: 0.0955167297 | total: 85
+[2026-04-28T15:55:16]   [100/200] POOP→EARTH | EARTH bal: 0.0997817978 | total: 95
+[2026-04-28T16:06:08]   [110/200] POOP→EARTH | EARTH bal: 0.1040772735 | total: 105
+[2026-04-28T16:16:54]   [120/200] POOP→EARTH | EARTH bal: 0.1082191288 | total: 115
+[2026-04-28T16:26:27]   [129] ERROR: missing revert data
+[2026-04-28T16:27:32]   [130/200] POOP→EARTH | EARTH bal: 0.1119672116 | total: 124
+[2026-04-28T16:38:18]   [140/200] POOP→EARTH | EARTH bal: 0.1160723574 | total: 134
+[2026-04-28T16:49:08]   [150/200] POOP→EARTH | EARTH bal: 0.1201343489 | total: 144
+[2026-04-28T16:59:51]   [160/200] POOP→EARTH | EARTH bal: 0.1239654197 | total: 154
+[2026-04-28T17:10:39]   [170/200] POOP→EARTH | EARTH bal: 0.1276188876 | total: 164
+[2026-04-28T17:21:30]   [180/200] POOP→EARTH | EARTH bal: 0.1311890920 | total: 174
+[2026-04-28T17:32:19]   [190/200] POOP→EARTH | EARTH bal: 0.1346922549 | total: 184
+[2026-04-28T17:43:21]   [200/200] POOP→EARTH | EARTH bal: 0.1377524828 | total: 194
+[2026-04-28T17:44:21] === Pair done. Moving to next. Total trades: 194 ===
+[2026-04-28T17:44:21] 
+[2026-04-28T17:44:21] === Starting pair: EARTH→MfT — 200 trades of $0.1 ===
+[2026-04-28T17:44:26]   [1/200] EARTH→MfT | MfT bal: 90402368.501 | total: 195
+[2026-04-28T17:54:09]   [10/200] EARTH→MfT | MfT bal: 93397138.270 | total: 204
+[2026-04-28T18:04:40]   [20/200] EARTH→MfT | MfT bal: 96454441.560 | total: 214
+[2026-04-28T18:15:26]   [30/200] EARTH→MfT | MfT bal: 100084883.87 | total: 224
+[2026-04-28T18:26:09]   [40/200] EARTH→MfT | MfT bal: 103482251.14 | total: 234
+[2026-04-28T18:36:59]   [50/200] EARTH→MfT | MfT bal: 106817809.37 | total: 244
+[2026-04-28T18:47:44]   [60/200] EARTH→MfT | MfT bal: 110147958.52 | total: 254
+[2026-04-28T18:58:24]   [70/200] EARTH→MfT | MfT bal: 113213336.76 | total: 264
+[2026-04-28T19:09:07]   [80/200] EARTH→MfT | MfT bal: 116901837.18 | total: 274
+[2026-04-28T19:19:59]   [90/200] EARTH→MfT | MfT bal: 120260929.47 | total: 284
+[2026-04-28T19:30:45]   [100/200] EARTH→MfT | MfT bal: 123674015.62 | total: 294
+[2026-04-28T19:41:32]   [110/200] EARTH→MfT | MfT bal: 127003845.82 | total: 304
+[2026-04-28T19:52:19]   [120/200] EARTH→MfT | MfT bal: 130317758.19 | total: 314
+[2026-04-28T20:03:01]   [130/200] EARTH→MfT | MfT bal: 133346896.74 | total: 324
+[2026-04-28T20:13:51]   [140/200] EARTH→MfT | MfT bal: 137052011.06 | total: 334
+[2026-04-28T20:24:38]   [150/200] EARTH→MfT | MfT bal: 140351132.46 | total: 344
+[2026-04-28T20:35:09]   [160/200] EARTH→MfT | MfT bal: 143300782.87 | total: 354
+[2026-04-28T20:46:01]   [170/200] EARTH→MfT | MfT bal: 146981455.49 | total: 364
+[2026-04-28T20:56:39]   [180/200] EARTH→MfT | MfT bal: 150277331.07 | total: 374
+[2026-04-28T21:07:29]   [190/200] EARTH→MfT | MfT bal: 153575002.11 | total: 384
+[2026-04-28T21:18:16]   [200/200] EARTH→MfT | MfT bal: 156581512.66 | total: 394
+[2026-04-28T21:19:16] === Pair done. Moving to next. Total trades: 394 ===
+[2026-04-28T21:19:16] 
+[2026-04-28T21:19:16] === Starting pair: MfT→TGN (via EARTH) — 200 trades of $0.1 ===
+[2026-04-28T21:19:16]   [1] ERROR: missing revert data
+[2026-04-28T21:20:17]   [2] ERROR: missing revert data
+[2026-04-28T21:21:17]   [3] ERROR: missing revert data
+[2026-04-28T21:22:18]   [4] ERROR: missing revert data
+[2026-04-28T21:23:18]   [5] ERROR: missing revert data
+[2026-04-28T21:24:19]   [6] ERROR: missing revert data
+[2026-04-28T21:25:19]   [7] ERROR: missing revert data
+[2026-04-28T21:26:19]   [8] ERROR: missing revert data
+[2026-04-28T21:27:20]   [9] ERROR: missing revert data
+[2026-04-28T21:28:20]   [10] ERROR: missing revert data
+[2026-04-28T21:29:21]   [11] ERROR: missing revert data
+[2026-04-28T21:30:21]   [12] ERROR: missing revert data
+[2026-04-28T21:32:27]   [14] ERROR: missing revert data
+[2026-04-28T21:33:28]   [15] ERROR: missing revert data
+[2026-04-28T21:34:28]   [16] ERROR: missing revert data
+[2026-04-28T21:35:29]   [17] ERROR: missing revert data
+[2026-04-28T21:36:29]   [18] ERROR: missing revert data
+[2026-04-28T21:37:30]   [19] ERROR: missing revert data
+[2026-04-28T21:38:30]   [20] ERROR: missing revert data
+[2026-04-28T21:39:30]   [21] ERROR: missing revert data
+[2026-04-28T21:40:31]   [22] ERROR: missing revert data
+[2026-04-28T21:41:31]   [23] ERROR: missing revert data
+[2026-04-28T21:42:32]   [24] ERROR: missing revert data
+[2026-04-28T21:43:32]   [25] ERROR: missing revert data
+[2026-04-28T21:44:33]   [26] ERROR: missing revert data
+[2026-04-28T21:45:33]   [27] ERROR: missing revert data
+[2026-04-28T21:46:34]   [28] ERROR: missing revert data
+[2026-04-28T21:47:34]   [29] ERROR: missing revert data
+[2026-04-28T21:48:35]   [30] ERROR: missing revert data
+[2026-04-28T21:49:35]   [31] ERROR: missing revert data
+[2026-04-28T21:50:36]   [32] ERROR: missing revert data
+[2026-04-28T21:51:36]   [33] ERROR: missing revert data
+[2026-04-28T21:52:37]   [34] ERROR: missing revert data
+[2026-04-28T21:53:37]   [35] ERROR: missing revert data
+[2026-04-28T21:54:38]   [36] ERROR: missing revert data
+[2026-04-28T21:55:39]   [37] ERROR: missing revert data
+[2026-04-28T21:56:40]   [38] ERROR: missing revert data
+[2026-04-28T21:57:40]   [39] ERROR: missing revert data
+[2026-04-28T21:58:41]   [40] ERROR: missing revert data
+[2026-04-28T21:59:41]   [41] ERROR: missing revert data
+[2026-04-28T22:00:41]   [42] ERROR: missing revert data
+[2026-04-28T22:01:42]   [43] ERROR: missing revert data
+[2026-04-28T22:02:42]   [44] ERROR: missing revert data
+[2026-04-28T22:03:43]   [45] ERROR: missing revert data
+[2026-04-28T22:04:44]   [46] ERROR: missing revert data
+[2026-04-28T22:05:44]   [47] ERROR: missing revert data
+[2026-04-28T22:06:45]   [48] ERROR: missing revert data
+[2026-04-28T22:07:43]   [49] ERROR: missing revert data
+[2026-04-28T22:08:43]   [50] ERROR: missing revert data
+[2026-04-28T22:09:44]   [51] ERROR: missing revert data
+[2026-04-28T22:10:44]   [52] ERROR: missing revert data
+[2026-04-28T22:11:45]   [53] ERROR: missing revert data
+[2026-04-28T22:12:45]   [54] ERROR: missing revert data
+[2026-04-28T22:13:46]   [55] ERROR: missing revert data
+[2026-04-28T22:14:46]   [56] ERROR: missing revert data
+[2026-04-28T22:15:46]   [57] ERROR: missing revert data
+[2026-04-28T22:16:47]   [58] ERROR: missing revert data
+[2026-04-28T22:17:47]   [59] ERROR: missing revert data
+[2026-04-28T22:18:48]   [60] ERROR: missing revert data
+[2026-04-28T22:19:49]   [61] ERROR: missing revert data
+[2026-04-28T22:20:49]   [62] ERROR: missing revert data
+[2026-04-28T22:22:55]   [64] ERROR: missing revert data
+[2026-04-28T22:23:56]   [65] ERROR: missing revert data
+[2026-04-28T22:24:56]   [66] ERROR: missing revert data
+[2026-04-28T22:25:57]   [67] ERROR: missing revert data
+[2026-04-28T22:26:57]   [68] ERROR: missing revert data
+[2026-04-28T22:27:58]   [69] ERROR: missing revert data
+[2026-04-28T22:28:58]   [70] ERROR: missing revert data
+[2026-04-28T22:29:58]   [71] ERROR: missing revert data
+[2026-04-28T22:32:05]   [73] ERROR: missing revert data
+[2026-04-28T22:33:06]   [74] ERROR: missing revert data
+[2026-04-28T22:34:06]   [75] ERROR: missing revert data
+[2026-04-28T22:35:06]   [76] ERROR: missing revert data
+[2026-04-28T22:36:07]   [77] ERROR: missing revert data
+[2026-04-28T22:37:08]   [78] ERROR: missing revert data
+[2026-04-28T22:38:08]   [79] ERROR: missing revert data
+[2026-04-28T22:39:10]   [80] ERROR: missing revert data
+[2026-04-28T22:40:10]   [81] ERROR: missing revert data
+[2026-04-28T22:41:11]   [82] ERROR: missing revert data
+[2026-04-28T22:42:11]   [83] ERROR: missing revert data
+[2026-04-28T22:43:12]   [84] ERROR: missing revert data
+[2026-04-28T22:44:13]   [85] ERROR: missing revert data
+[2026-04-28T22:45:14]   [86] ERROR: missing revert data
+[2026-04-28T22:46:15]   [87] ERROR: missing revert data
+[2026-04-28T22:47:15]   [88] ERROR: missing revert data
+[2026-04-28T22:48:16]   [89] ERROR: missing revert data
+[2026-04-28T22:49:16]   [90] ERROR: missing revert data
+[2026-04-28T22:50:16]   [91] ERROR: missing revert data
+[2026-04-28T22:51:17]   [92] ERROR: missing revert data
+[2026-04-28T22:52:17]   [93] ERROR: missing revert data
+[2026-04-28T22:53:18]   [94] ERROR: missing revert data
+[2026-04-28T22:54:18]   [95] ERROR: missing revert data
+[2026-04-28T22:55:19]   [96] ERROR: missing revert data
+[2026-04-28T22:56:19]   [97] ERROR: missing revert data
+[2026-04-28T22:57:20]   [98] ERROR: missing revert data
+[2026-04-28T22:58:20]   [99] ERROR: missing revert data
+[2026-04-28T22:59:21]   [100] ERROR: missing revert data
+[2026-04-28T23:00:28]   [101] ERROR: missing revert data
+[2026-04-28T23:01:29]   [102] ERROR: missing revert data
+[2026-04-28T23:02:29]   [103] ERROR: missing revert data
+[2026-04-28T23:04:35]   [105] ERROR: missing revert data
+[2026-04-28T23:05:36]   [106] ERROR: missing revert data
+[2026-04-28T23:06:36]   [107] ERROR: missing revert data
+[2026-04-28T23:07:37]   [108] ERROR: missing revert data
+[2026-04-28T23:08:37]   [109] ERROR: missing revert data
+[2026-04-28T23:09:38]   [110] ERROR: missing revert data
+[2026-04-28T23:10:38]   [111] ERROR: missing revert data
+[2026-04-28T23:11:39]   [112] ERROR: missing revert data
+[2026-04-28T23:12:39]   [113] ERROR: missing revert data
+[2026-04-28T23:13:40]   [114] ERROR: missing revert data
+[2026-04-28T23:14:40]   [115] ERROR: missing revert data
+[2026-04-28T23:15:40]   [116] ERROR: missing revert data
+[2026-04-28T23:16:41]   [117] ERROR: missing revert data
+[2026-04-28T23:17:41]   [118] ERROR: missing revert data
+[2026-04-28T23:18:42]   [119] ERROR: missing revert data
+[2026-04-28T23:19:43]   [120] ERROR: missing revert data
+[2026-04-28T23:20:44]   [121] ERROR: missing revert data
+[2026-04-28T23:21:44]   [122] ERROR: missing revert data
+[2026-04-28T23:22:44]   [123] ERROR: missing revert data
+[2026-04-28T23:23:45]   [124] ERROR: missing revert data
+[2026-04-28T23:24:45]   [125] ERROR: missing revert data
+[2026-04-28T23:25:47]   [126] ERROR: missing revert data
+[2026-04-28T23:26:47]   [127] ERROR: missing revert data
+[2026-04-28T23:27:48]   [128] ERROR: missing revert data
+[2026-04-28T23:28:48]   [129] ERROR: missing revert data
+[2026-04-28T23:29:49]   [130] ERROR: missing revert data
+[2026-04-28T23:30:49]   [131] ERROR: missing revert data
+[2026-04-28T23:32:55]   [133] ERROR: missing revert data
+[2026-04-28T23:33:56]   [134] ERROR: missing revert data
+[2026-04-28T23:34:56]   [135] ERROR: missing revert data
+[2026-04-28T23:35:57]   [136] ERROR: missing revert data
+[2026-04-28T23:36:57]   [137] ERROR: missing revert data
+[2026-04-28T23:37:58]   [138] ERROR: missing revert data
+[2026-04-28T23:38:58]   [139] ERROR: missing revert data
+[2026-04-28T23:39:59]   [140] ERROR: missing revert data
+[2026-04-28T23:40:59]   [141] ERROR: missing revert data
+[2026-04-28T23:43:06]   [143] ERROR: missing revert data
+[2026-04-28T23:44:07]   [144] ERROR: missing revert data
+[2026-04-28T23:45:08]   [145] ERROR: missing revert data
+[2026-04-28T23:46:09]   [146] ERROR: missing revert data
+[2026-04-28T23:47:10]   [147] ERROR: missing revert data
+[2026-04-28T23:48:11]   [148] ERROR: missing revert data
+[2026-04-28T23:49:13]   [149] ERROR: missing revert data
+[2026-04-28T23:50:13]   [150] ERROR: missing revert data
+[2026-04-28T23:51:14]   [151] ERROR: missing revert data
+[2026-04-28T23:52:15]   [152] ERROR: missing revert data
+[2026-04-28T23:53:16]   [153] ERROR: missing revert data
+[2026-04-28T23:54:16]   [154] ERROR: missing revert data
+[2026-04-28T23:55:17]   [155] ERROR: missing revert data
+[2026-04-28T23:56:17]   [156] ERROR: missing revert data
+[2026-04-28T23:57:18]   [157] ERROR: missing revert data
+[2026-04-28T23:58:18]   [158] ERROR: missing revert data
+[2026-04-28T23:59:19]   [159] ERROR: missing revert data
+[2026-04-29T00:00:21]   [160] ERROR: missing revert data
+[2026-04-29T00:01:22]   [161] ERROR: missing revert data
+[2026-04-29T00:02:24]   [162] ERROR: missing revert data
+[2026-04-29T00:03:25]   [163] ERROR: missing revert data
+[2026-04-29T00:04:26]   [164] ERROR: missing revert data
+[2026-04-29T00:05:27]   [165] ERROR: missing revert data
+[2026-04-29T00:06:28]   [166] ERROR: missing revert data
+[2026-04-29T00:07:29]   [167] ERROR: missing revert data
+[2026-04-29T00:08:30]   [168] ERROR: missing revert data
+[2026-04-29T00:09:30]   [169] ERROR: missing revert data
+[2026-04-29T00:10:31]   [170] ERROR: missing revert data
+[2026-04-29T00:11:32]   [171] ERROR: missing revert data
+[2026-04-29T00:12:33]   [172] ERROR: missing revert data
+[2026-04-29T00:13:33]   [173] ERROR: missing revert data
+[2026-04-29T00:14:34]   [174] ERROR: missing revert data
+[2026-04-29T00:15:35]   [175] ERROR: missing revert data
+[2026-04-29T00:16:37]   [176] ERROR: missing revert data
+[2026-04-29T00:17:37]   [177] ERROR: missing revert data
+[2026-04-29T00:18:38]   [178] ERROR: missing revert data
+[2026-04-29T00:19:39]   [179] ERROR: missing revert data
+[2026-04-29T00:20:39]   [180] ERROR: missing revert data
+[2026-04-29T00:22:48]   [182] ERROR: missing revert data
+[2026-04-29T00:23:48]   [183] ERROR: missing revert data
+[2026-04-29T00:24:49]   [184] ERROR: missing revert data
+[2026-04-29T00:26:55]   [186] ERROR: missing revert data
+[2026-04-29T00:27:56]   [187] ERROR: missing revert data
+[2026-04-29T00:28:57]   [188] ERROR: missing revert data
+[2026-04-29T00:29:59]   [189] ERROR: missing revert data
+[2026-04-29T00:31:03]   [190] ERROR: missing revert data
+[2026-04-29T00:32:05]   [191] ERROR: missing revert data
+[2026-04-29T00:33:05]   [192] ERROR: missing revert data
+[2026-04-29T00:34:06]   [193] ERROR: missing revert data
+[2026-04-29T00:35:09]   [194] ERROR: missing revert data
+[2026-04-29T00:37:19]   [196] ERROR: missing revert data
+[2026-04-29T00:38:21]   [197] ERROR: replacement fee too low
+[2026-04-29T00:39:21]   [198] ERROR: missing revert data
+[2026-04-29T00:40:26]   [199] ERROR: missing revert data
+[2026-04-29T00:41:27]   [200] ERROR: missing revert data
+[2026-04-29T00:42:27] === Pair done. Moving to next. Total trades: 404 ===
+[2026-04-29T00:42:27] 
+[2026-04-29T00:42:27] === Starting pair: TGN→EARTH — 200 trades of $0.1 ===
+[2026-04-29T00:42:28]   [1] ERROR: missing revert data
+[2026-04-29T00:43:29]   [2] ERROR: missing revert data
+[2026-04-29T00:45:38]   [4] ERROR: missing revert data
+[2026-04-29T00:46:39]   [5] ERROR: missing revert data
+[2026-04-29T00:48:46]   [7] ERROR: missing revert data
+[2026-04-29T00:49:47]   [8] ERROR: missing revert data
+[2026-04-29T00:50:48]   [9] ERROR: missing revert data
+[2026-04-29T00:51:50]   [10] ERROR: missing revert data
+[2026-04-29T00:52:51]   [11] ERROR: missing revert data
+[2026-04-29T00:53:53]   [12] ERROR: missing revert data
+[2026-04-29T00:54:54]   [13] ERROR: missing revert data
+[2026-04-29T00:55:57]   [14] ERROR: missing revert data
+[2026-04-29T00:56:58]   [15] ERROR: missing revert data
+[2026-04-29T00:57:59]   [16] ERROR: missing revert data
+[2026-04-29T00:58:59]   [17] ERROR: missing revert data
+[2026-04-29T01:01:03]   [19] ERROR: missing revert data
+[2026-04-29T01:02:03]   [20] ERROR: missing revert data
+[2026-04-29T01:03:05]   [21] ERROR: missing revert data
+[2026-04-29T01:04:05]   [22] ERROR: missing revert data
+[2026-04-29T01:05:06]   [23] ERROR: missing revert data
+[2026-04-29T01:07:14]   [25] ERROR: missing revert data
+[2026-04-29T01:08:16]   [26] ERROR: missing revert data
+[2026-04-29T01:09:17]   [27] ERROR: missing revert data
+[2026-04-29T01:10:18]   [28] ERROR: missing revert data
+[2026-04-29T01:11:19]   [29] ERROR: missing revert data
+[2026-04-29T01:12:28]   [30/200] TGN→EARTH | EARTH bal: 0.0459405649 | total: 409
+[2026-04-29T01:13:29]   [31] ERROR: missing revert data
+[2026-04-29T01:14:29]   [32] ERROR: missing revert data
+[2026-04-29T01:16:33]   [34] ERROR: missing revert data
+[2026-04-29T01:17:33]   [35] ERROR: missing revert data
+[2026-04-29T01:18:35]   [36] ERROR: missing revert data
+[2026-04-29T01:19:35]   [37] ERROR: missing revert data
+[2026-04-29T01:20:38]   [38] ERROR: missing revert data
+[2026-04-29T01:21:39]   [39] ERROR: missing revert data
+[2026-04-29T01:22:46]   [40/200] TGN→EARTH | EARTH bal: 0.0464809781 | total: 411
+[2026-04-29T01:23:47]   [41] ERROR: missing revert data
+[2026-04-29T01:24:48]   [42] ERROR: missing revert data
+[2026-04-29T01:25:48]   [43] ERROR: missing revert data
+[2026-04-29T01:26:50]   [44] ERROR: missing revert data
+[2026-04-29T01:27:50]   [45] ERROR: missing revert data
+[2026-04-29T01:28:52]   [46] ERROR: missing revert data
+[2026-04-29T01:29:53]   [47] ERROR: missing revert data
+[2026-04-29T01:30:54]   [48] ERROR: missing revert data
+[2026-04-29T01:31:55]   [49] ERROR: missing revert data
+[2026-04-29T01:32:56]   [50] ERROR: missing revert data
+[2026-04-29T01:33:58]   [51] ERROR: missing revert data
+[2026-04-29T01:34:58]   [52] ERROR: missing revert data
+[2026-04-29T01:35:58]   [53] ERROR: missing revert data
+[2026-04-29T01:36:59]   [54] ERROR: missing revert data
+[2026-04-29T01:38:00]   [55] ERROR: missing revert data
+[2026-04-29T01:39:01]   [56] ERROR: missing revert data
+[2026-04-29T01:40:02]   [57] ERROR: missing revert data
+[2026-04-29T01:41:04]   [58] ERROR: missing revert data
+[2026-04-29T01:42:05]   [59] ERROR: missing revert data
+[2026-04-29T01:43:05]   [60] ERROR: missing revert data
+[2026-04-29T01:44:06]   [61] ERROR: missing revert data
+[2026-04-29T01:45:07]   [62] ERROR: missing revert data
+[2026-04-29T01:46:08]   [63] ERROR: missing revert data
+[2026-04-29T01:47:08]   [64] ERROR: missing revert data
+[2026-04-29T01:48:09]   [65] ERROR: missing revert data
+[2026-04-29T01:50:16]   [67] ERROR: missing revert data
+[2026-04-29T01:51:16]   [68] ERROR: missing revert data
+[2026-04-29T01:52:17]   [69] ERROR: missing revert data
+[2026-04-29T01:53:17]   [70] ERROR: missing revert data
+[2026-04-29T01:54:18]   [71] ERROR: missing revert data
+[2026-04-29T01:55:19]   [72] ERROR: missing revert data
+[2026-04-29T01:57:29]   [74] ERROR: missing revert data
+[2026-04-29T01:58:30]   [75] ERROR: missing revert data
+[2026-04-29T02:00:32]   [77] ERROR: missing revert data
+[2026-04-29T02:01:33]   [78] ERROR: missing revert data
+[2026-04-29T02:02:42]   [79] ERROR: missing revert data
+[2026-04-29T02:03:43]   [80] ERROR: missing revert data
+[2026-04-29T02:04:45]   [81] ERROR: missing revert data
+[2026-04-29T02:05:46]   [82] ERROR: missing revert data
+[2026-04-29T02:06:46]   [83] ERROR: missing revert data
+[2026-04-29T02:07:47]   [84] ERROR: missing revert data
+[2026-04-29T02:08:48]   [85] ERROR: missing revert data
+[2026-04-29T02:09:48]   [86] ERROR: missing revert data
+[2026-04-29T02:10:49]   [87] ERROR: missing revert data
+[2026-04-29T02:11:49]   [88] ERROR: missing revert data
+[2026-04-29T02:12:50]   [89/200] No TGN — skipping pair
+[2026-04-29T02:12:50] === Pair done. Moving to next. Total trades: 414 ===
+[2026-04-29T02:12:50] 
+[2026-04-29T02:12:50] === Starting pair: EARTH→POOP — 200 trades of $0.1 ===
+[2026-04-29T02:12:57]   [1/200] EARTH→POOP | POOP bal: 66.501460575 | total: 415
+[2026-04-29T02:22:34]   [10/200] EARTH→POOP | POOP bal: 67.690732273 | total: 424
+[2026-04-29T02:33:27]   [20/200] EARTH→POOP | POOP bal: 68.954969496 | total: 434
+[2026-04-29T02:44:12]   [30/200] EARTH→POOP | POOP bal: 70.214314159 | total: 444
+[2026-04-29T02:54:44]   [40/200] EARTH→POOP | POOP bal: 71.297133551 | total: 454
+[2026-04-29T03:05:28]   [50/200] EARTH→POOP | POOP bal: 72.471301868 | total: 464
+[2026-04-29T03:16:20]   [60/200] EARTH→POOP | POOP bal: 73.761009872 | total: 474
+[2026-04-29T03:27:07]   [70/200] EARTH→POOP | POOP bal: 74.894454500 | total: 484
+[2026-04-29T03:37:47]   [80/200] EARTH→POOP | POOP bal: 76.014172185 | total: 494
+[2026-04-29T03:41:57]   [84/200] No EARTH — skipping pair
+[2026-04-29T03:41:57] === Pair done. Moving to next. Total trades: 497 ===
+[2026-04-29T03:41:57] 
+[2026-04-29T03:41:57] === Starting pair: POOP→AZUSD (via EARTH) — 200 trades of $0.1 ===
+[2026-04-29T03:41:57]   [1] ERROR: missing revert data
+[2026-04-29T03:51:45]   [10/200] POOP→AZUSD (via EARTH) | AZUSD bal: 0.7879432970 | total: 506
+[2026-04-29T03:59:18]   [17] ERROR: transaction execution reverted
+[2026-04-29T04:02:34]   [20/200] POOP→AZUSD (via EARTH) | AZUSD bal: 1.4363575021 | total: 515
+[2026-04-29T04:13:25]   [30/200] POOP→AZUSD (via EARTH) | AZUSD bal: 2.3204539423 | total: 525
+[2026-04-29T04:24:07]   [40/200] POOP→AZUSD (via EARTH) | AZUSD bal: 3.1117812190 | total: 535
+[2026-04-29T04:34:49]   [50/200] POOP→AZUSD (via EARTH) | AZUSD bal: 3.9172611603 | total: 545
+[2026-04-29T04:45:50]   [60/200] POOP→AZUSD (via EARTH) | AZUSD bal: 4.7330771623 | total: 555
+[2026-04-29T04:56:45]   [70/200] POOP→AZUSD (via EARTH) | AZUSD bal: 5.5668981873 | total: 565
+[2026-04-29T05:07:28]   [80/200] POOP→AZUSD (via EARTH) | AZUSD bal: 6.3743592754 | total: 575
+[2026-04-29T05:18:07]   [90/200] POOP→AZUSD (via EARTH) | AZUSD bal: 7.0888944587 | total: 585
+[2026-04-29T05:28:52]   [100/200] POOP→AZUSD (via EARTH) | AZUSD bal: 7.9587413299 | total: 595
+[2026-04-29T05:39:42]   [110/200] POOP→AZUSD (via EARTH) | AZUSD bal: 8.6680068482 | total: 605
+[2026-04-29T05:50:26]   [120/200] POOP→AZUSD (via EARTH) | AZUSD bal: 9.5402191358 | total: 615
+[2026-04-29T06:01:20]   [130/200] POOP→AZUSD (via EARTH) | AZUSD bal: 10.329979875 | total: 625
+[2026-04-29T06:12:04]   [140/200] POOP→AZUSD (via EARTH) | AZUSD bal: 11.121224796 | total: 635
+[2026-04-29T06:22:45]   [150/200] POOP→AZUSD (via EARTH) | AZUSD bal: 11.916664988 | total: 645
+[2026-04-29T06:33:43]   [160/200] POOP→AZUSD (via EARTH) | AZUSD bal: 12.713763842 | total: 655
+[2026-04-29T06:44:39]   [170/200] POOP→AZUSD (via EARTH) | AZUSD bal: 13.501267121 | total: 665
+[2026-04-29T06:55:25]   [180/200] POOP→AZUSD (via EARTH) | AZUSD bal: 14.319914596 | total: 675
+[2026-04-29T07:06:19]   [190/200] POOP→AZUSD (via EARTH) | AZUSD bal: 15.051087107 | total: 685
+[2026-04-29T07:17:04]   [200/200] POOP→AZUSD (via EARTH) | AZUSD bal: 15.915858252 | total: 695
+[2026-04-29T07:18:04] === Pair done. Moving to next. Total trades: 695 ===
+[2026-04-29T07:18:04] 
+[2026-04-29T07:18:04] === Starting pair: AZUSD→EARTH — 200 trades of $0.1 ===
+[2026-04-29T07:18:04]   [1] ERROR: missing revert data
+[2026-04-29T07:19:05]   [2] ERROR: missing revert data
+[2026-04-29T07:20:05]   [3] ERROR: missing revert data
+[2026-04-29T07:21:06]   [4] ERROR: missing revert data
+[2026-04-29T07:22:07]   [5] ERROR: missing revert data
+[2026-04-29T07:23:07]   [6] ERROR: missing revert data
+[2026-04-29T07:24:08]   [7] ERROR: missing revert data
+[2026-04-29T07:25:09]   [8] ERROR: missing revert data
+[2026-04-29T07:26:10]   [9] ERROR: missing revert data
+[2026-04-29T07:27:16]   [10/200] AZUSD→EARTH | EARTH bal: 0.0006022803 | total: 696
+[2026-04-29T07:28:16]   [11] ERROR: missing revert data
+[2026-04-29T07:29:17]   [12] ERROR: missing revert data
+[2026-04-29T07:30:17]   [13] ERROR: missing revert data
+[2026-04-29T07:31:17]   [14] ERROR: missing revert data
+[2026-04-29T07:32:19]   [15] ERROR: missing revert data
+[2026-04-29T07:33:20]   [16] ERROR: missing revert data
+[2026-04-29T07:34:20]   [17] ERROR: missing revert data
+[2026-04-29T07:36:30]   [19] ERROR: missing revert data
+[2026-04-29T07:37:32]   [20/200] AZUSD→EARTH | EARTH bal: 0.0012045498 | total: 698
+[2026-04-29T07:38:33]   [21] ERROR: missing revert data
+[2026-04-29T07:39:33]   [22] ERROR: missing revert data
+[2026-04-29T07:40:34]   [23] ERROR: missing revert data
+[2026-04-29T07:41:35]   [24] ERROR: missing revert data
+[2026-04-29T07:42:35]   [25] ERROR: missing revert data
+[2026-04-29T07:43:36]   [26] ERROR: missing revert data
+[2026-04-29T07:44:37]   [27] ERROR: missing revert data
+[2026-04-29T07:45:37]   [28] ERROR: missing revert data
+[2026-04-29T07:46:39]   [29] ERROR: missing revert data
+[2026-04-29T07:47:40]   [30] ERROR: missing revert data
+[2026-04-29T07:48:41]   [31] ERROR: missing revert data
+[2026-04-29T07:50:49]   [33] ERROR: missing revert data
+[2026-04-29T07:51:50]   [34] ERROR: missing revert data
+[2026-04-29T07:53:58]   [36] ERROR: missing revert data
+[2026-04-29T07:54:58]   [37] ERROR: missing revert data
+[2026-04-29T07:55:59]   [38] ERROR: missing revert data
+[2026-04-29T07:56:59]   [39] ERROR: missing revert data
+[2026-04-29T07:58:06]   [40/200] AZUSD→EARTH | EARTH bal: 0.0036135187 | total: 701
+[2026-04-29T07:59:07]   [41] ERROR: missing revert data
+[2026-04-29T08:00:08]   [42] ERROR: missing revert data
+[2026-04-29T08:01:09]   [43] ERROR: missing revert data
+[2026-04-29T08:02:10]   [44] ERROR: missing revert data
+[2026-04-29T08:03:10]   [45] ERROR: missing revert data
+[2026-04-29T08:04:10]   [46] ERROR: missing revert data
+[2026-04-29T08:06:18]   [48] ERROR: missing revert data
+[2026-04-29T08:07:18]   [49] ERROR: missing revert data
+[2026-04-29T08:08:19]   [50] ERROR: missing revert data
+[2026-04-29T08:09:19]   [51] ERROR: missing revert data
+[2026-04-29T08:10:20]   [52] ERROR: missing revert data
+[2026-04-29T08:11:21]   [53] ERROR: missing revert data
+[2026-04-29T08:13:26]   [55] ERROR: missing revert data
+[2026-04-29T08:14:26]   [56] ERROR: missing revert data
+[2026-04-29T08:15:27]   [57] ERROR: missing revert data
+[2026-04-29T08:16:28]   [58] ERROR: missing revert data
+[2026-04-29T08:17:29]   [59] ERROR: missing revert data
+[2026-04-29T08:18:29]   [60] ERROR: missing revert data
+[2026-04-29T08:19:30]   [61] ERROR: missing revert data
+[2026-04-29T08:21:37]   [63] ERROR: missing revert data
+[2026-04-29T08:22:38]   [64] ERROR: missing revert data
+[2026-04-29T08:23:38]   [65] ERROR: missing revert data
+[2026-04-29T08:24:38]   [66] ERROR: missing revert data
+[2026-04-29T08:25:39]   [67] ERROR: missing revert data
+[2026-04-29T08:26:40]   [68] ERROR: missing revert data
+[2026-04-29T08:27:41]   [69] ERROR: missing revert data
+[2026-04-29T08:28:48]   [70] ERROR: missing revert data
+[2026-04-29T08:29:48]   [71] ERROR: missing revert data
+[2026-04-29T08:30:49]   [72] ERROR: missing revert data
+[2026-04-29T08:31:49]   [73] ERROR: missing revert data
+[2026-04-29T08:32:50]   [74] ERROR: missing revert data
+[2026-04-29T08:33:50]   [75] ERROR: missing revert data
+[2026-04-29T08:35:56]   [77] ERROR: missing revert data
+[2026-04-29T08:36:57]   [78] ERROR: missing revert data
+[2026-04-29T08:37:57]   [79] ERROR: missing revert data
+[2026-04-29T08:38:59]   [80] ERROR: missing revert data
+[2026-04-29T08:40:00]   [81] ERROR: missing revert data
+[2026-04-29T08:41:00]   [82] ERROR: missing revert data
+[2026-04-29T08:43:07]   [84] ERROR: missing revert data
+[2026-04-29T08:44:08]   [85] ERROR: missing revert data
+[2026-04-29T08:45:08]   [86] ERROR: missing revert data
+[2026-04-29T08:46:10]   [87] ERROR: missing revert data
+[2026-04-29T08:47:10]   [88] ERROR: missing revert data
+[2026-04-29T08:49:20]   [90] ERROR: missing revert data
+[2026-04-29T08:50:21]   [91] ERROR: missing revert data
+[2026-04-29T08:51:21]   [92] ERROR: missing revert data
+[2026-04-29T08:52:22]   [93] ERROR: missing revert data
+[2026-04-29T08:53:22]   [94] ERROR: missing revert data
+[2026-04-29T08:54:24]   [95] ERROR: missing revert data
+[2026-04-29T08:55:24]   [96] ERROR: missing revert data
+[2026-04-29T08:56:24]   [97] ERROR: missing revert data
+[2026-04-29T08:57:25]   [98] ERROR: missing revert data
+[2026-04-29T08:58:25]   [99] ERROR: missing revert data
+[2026-04-29T08:59:26]   [100] ERROR: missing revert data
+[2026-04-29T09:00:26]   [101] ERROR: missing revert data
+[2026-04-29T09:01:27]   [102] ERROR: missing revert data
+[2026-04-29T09:02:27]   [103] ERROR: missing revert data
+[2026-04-29T09:03:27]   [104] ERROR: missing revert data
+[2026-04-29T09:04:28]   [105] ERROR: missing revert data
+[2026-04-29T09:05:28]   [106] ERROR: missing revert data
+[2026-04-29T09:06:29]   [107] ERROR: missing revert data
+[2026-04-29T09:07:30]   [108] ERROR: missing revert data
+[2026-04-29T09:08:30]   [109] ERROR: missing revert data
+[2026-04-29T09:09:35]   [110/200] AZUSD→EARTH | EARTH bal: 0.0078327765 | total: 709
+[2026-04-29T09:10:37]   [111] ERROR: missing revert data
+[2026-04-29T09:11:37]   [112] ERROR: missing revert data
+[2026-04-29T09:12:38]   [113] ERROR: missing revert data
+[2026-04-29T09:13:39]   [114] ERROR: missing revert data
+[2026-04-29T09:14:40]   [115] ERROR: missing revert data
+[2026-04-29T09:15:40]   [116] ERROR: missing revert data
+[2026-04-29T09:16:41]   [117] ERROR: missing revert data
+[2026-04-29T09:17:42]   [118] ERROR: missing revert data
+[2026-04-29T09:18:42]   [119] ERROR: missing revert data
+[2026-04-29T09:19:43]   [120] ERROR: missing revert data
+[2026-04-29T09:20:43]   [121] ERROR: missing revert data
+[2026-04-29T09:21:43]   [122] ERROR: missing revert data
+[2026-04-29T09:22:45]   [123] ERROR: missing revert data
+[2026-04-29T09:23:48]   [124] ERROR: missing revert data
+[2026-04-29T09:24:48]   [125] ERROR: missing revert data
+[2026-04-29T09:25:49]   [126] ERROR: missing revert data
+[2026-04-29T09:26:50]   [127] ERROR: missing revert data
+[2026-04-29T09:27:51]   [128] ERROR: missing revert data
+[2026-04-29T09:28:51]   [129] ERROR: missing revert data
+[2026-04-29T09:29:52]   [130] ERROR: missing revert data
+[2026-04-29T09:30:52]   [131] ERROR: missing revert data
+[2026-04-29T09:31:52]   [132] ERROR: missing revert data
+[2026-04-29T09:32:53]   [133] ERROR: missing revert data
+[2026-04-29T09:33:53]   [134] ERROR: missing revert data
+[2026-04-29T09:34:54]   [135] ERROR: missing revert data
+[2026-04-29T09:35:56]   [136] ERROR: missing revert data
+[2026-04-29T09:36:58]   [137] ERROR: missing revert data
+[2026-04-29T09:37:59]   [138] ERROR: missing revert data
+[2026-04-29T09:38:59]   [139] ERROR: missing revert data
+[2026-04-29T09:40:00]   [140] ERROR: missing revert data
+[2026-04-29T09:41:00]   [141] ERROR: missing revert data
+[2026-04-29T09:43:06]   [143] ERROR: missing revert data
+[2026-04-29T09:44:07]   [144] ERROR: missing revert data
+[2026-04-29T09:45:10]   [145] ERROR: missing revert data
+[2026-04-29T09:46:10]   [146] ERROR: missing revert data
+[2026-04-29T09:47:11]   [147] ERROR: missing revert data
+[2026-04-29T09:49:18]   [149] ERROR: missing revert data
+[2026-04-29T09:50:19]   [150] ERROR: missing revert data
+[2026-04-29T09:51:20]   [151] ERROR: missing revert data
+[2026-04-29T09:53:27]   [153] ERROR: missing revert data
+[2026-04-29T09:54:28]   [154] ERROR: missing revert data
+[2026-04-29T09:55:29]   [155] ERROR: missing revert data
+[2026-04-29T09:56:29]   [156] ERROR: missing revert data
+[2026-04-29T09:57:31]   [157] ERROR: missing revert data
+[2026-04-29T09:58:32]   [158] ERROR: missing revert data
+[2026-04-29T09:59:32]   [159] ERROR: missing revert data
+[2026-04-29T10:00:34]   [160] ERROR: missing revert data
+[2026-04-29T10:01:35]   [161] ERROR: missing revert data
+[2026-04-29T10:02:36]   [162] ERROR: missing revert data
+[2026-04-29T10:03:36]   [163] ERROR: missing revert data
+[2026-04-29T10:04:37]   [164] ERROR: missing revert data
+[2026-04-29T10:05:37]   [165] ERROR: missing revert data
+[2026-04-29T10:06:40]   [166] ERROR: missing revert data
+[2026-04-29T10:07:40]   [167] ERROR: missing revert data
+[2026-04-29T10:09:47]   [169] ERROR: missing revert data
+[2026-04-29T10:10:48]   [170] ERROR: missing revert data
+[2026-04-29T10:11:49]   [171] ERROR: missing revert data
+[2026-04-29T10:14:10]   [173] ERROR: missing revert data
+[2026-04-29T10:15:11]   [174] ERROR: missing revert data
+[2026-04-29T10:17:16]   [176] ERROR: missing revert data
+[2026-04-29T10:18:17]   [177] ERROR: missing revert data
+[2026-04-29T10:19:18]   [178] ERROR: missing revert data
+[2026-04-29T10:20:18]   [179] ERROR: missing revert data
+[2026-04-29T10:21:18]   [180] ERROR: missing revert data
+[2026-04-29T10:22:19]   [181] ERROR: missing revert data
+[2026-04-29T10:23:20]   [182] ERROR: missing revert data
+[2026-04-29T10:24:20]   [183] ERROR: missing revert data
+[2026-04-29T10:25:21]   [184] ERROR: missing revert data
+[2026-04-29T10:27:25]   [186] ERROR: missing revert data
+[2026-04-29T10:28:25]   [187] ERROR: missing revert data
+[2026-04-29T10:29:26]   [188] ERROR: missing revert data
+[2026-04-29T10:30:27]   [189] ERROR: missing revert data
+[2026-04-29T10:31:28]   [190] ERROR: missing revert data
+[2026-04-29T10:32:28]   [191] ERROR: missing revert data
+[2026-04-29T10:33:29]   [192] ERROR: missing revert data
+[2026-04-29T10:34:30]   [193] ERROR: missing revert data
+[2026-04-29T10:35:31]   [194] ERROR: missing revert data
+[2026-04-29T10:36:32]   [195] ERROR: missing revert data
+[2026-04-29T10:37:33]   [196] ERROR: missing revert data
+[2026-04-29T10:38:33]   [197] ERROR: missing revert data
+[2026-04-29T10:39:34]   [198] ERROR: missing revert data
+[2026-04-29T10:40:35]   [199] ERROR: missing revert data
+[2026-04-29T10:41:36]   [200] ERROR: missing revert data
+[2026-04-29T10:42:36] === Pair done. Moving to next. Total trades: 716 ===
+[2026-04-29T10:42:36] 
+[2026-04-29T10:42:36] === Starting pair: EARTH→MfT — 200 trades of $0.1 ===
+[2026-04-29T10:42:41]   [1/200] EARTH→MfT | MfT bal: 153563634.65 | total: 717
+[2026-04-29T10:52:29]   [10/200] EARTH→MfT | MfT bal: 156597776.78 | total: 726
+[2026-04-29T11:03:14]   [20/200] EARTH→MfT | MfT bal: 159888174.67 | total: 736
+[2026-04-29T11:06:21]   [23/200] No EARTH — skipping pair
+[2026-04-29T11:06:21] === Pair done. Moving to next. Total trades: 738 ===
+[2026-04-29T11:06:21] 
+[2026-04-29T11:06:21] === Starting pair: MfT→POOP (via EARTH) — 200 trades of $0.1 ===
+[2026-04-29T11:06:23]   [1] ERROR: missing revert data
+[2026-04-29T11:07:23]   [2] ERROR: missing revert data
+[2026-04-29T11:08:23]   [3] ERROR: missing revert data
+[2026-04-29T11:09:24]   [4] ERROR: missing revert data
+[2026-04-29T11:10:24]   [5] ERROR: missing revert data
+[2026-04-29T11:11:25]   [6] ERROR: missing revert data
+[2026-04-29T11:12:26]   [7] ERROR: missing revert data
+[2026-04-29T11:13:26]   [8] ERROR: missing revert data
+[2026-04-29T11:14:27]   [9] ERROR: missing revert data
+[2026-04-29T11:15:31]   [10] ERROR: missing revert data
+[2026-04-29T11:17:33]   [12] ERROR: missing revert data
+[2026-04-29T11:18:34]   [13] ERROR: missing revert data
+[2026-04-29T11:19:34]   [14] ERROR: missing revert data
+[2026-04-29T11:20:35]   [15] ERROR: missing revert data
+[2026-04-29T11:21:36]   [16] ERROR: missing revert data
+[2026-04-29T11:22:37]   [17] ERROR: missing revert data
+[2026-04-29T11:23:37]   [18] ERROR: missing revert data
+[2026-04-29T11:24:39]   [19] ERROR: missing revert data
+[2026-04-29T11:25:39]   [20] ERROR: missing revert data
+[2026-04-29T11:26:40]   [21] ERROR: missing revert data
+[2026-04-29T11:27:40]   [22] ERROR: missing revert data
+[2026-04-29T11:28:41]   [23] ERROR: missing revert data
+[2026-04-29T11:30:47]   [25] ERROR: missing revert data
+[2026-04-29T11:31:47]   [26] ERROR: missing revert data
+[2026-04-29T11:32:48]   [27] ERROR: missing revert data
+[2026-04-29T11:33:48]   [28] ERROR: missing revert data
+[2026-04-29T11:34:48]   [29] ERROR: missing revert data
+[2026-04-29T11:35:49]   [30] ERROR: missing revert data
+[2026-04-29T11:36:49]   [31] ERROR: missing revert data
+[2026-04-29T11:37:50]   [32] ERROR: missing revert data
+[2026-04-29T11:38:50]   [33] ERROR: missing revert data
+[2026-04-29T11:40:57]   [35] ERROR: missing revert data
+[2026-04-29T11:41:58]   [36] ERROR: missing revert data
+[2026-04-29T11:42:59]   [37] ERROR: missing revert data
+[2026-04-29T11:44:00]   [38] ERROR: missing revert data
+[2026-04-29T11:45:00]   [39] ERROR: missing revert data
+[2026-04-29T11:46:01]   [40] ERROR: missing revert data
+[2026-04-29T11:48:09]   [42] ERROR: missing revert data
+[2026-04-29T11:49:10]   [43] ERROR: missing revert data
+[2026-04-29T11:50:11]   [44] ERROR: missing revert data
+[2026-04-29T11:52:18]   [46] ERROR: missing revert data
+[2026-04-29T11:53:19]   [47] ERROR: missing revert data
+[2026-04-29T11:54:20]   [48] ERROR: missing revert data
+[2026-04-29T11:55:20]   [49] ERROR: missing revert data
+[2026-04-29T11:56:23]   [50/200] MfT→POOP (via EARTH) | POOP bal: 51.121377756 | total: 745
+[2026-04-29T11:57:23]   [51] ERROR: missing revert data
+[2026-04-29T11:58:24]   [52] ERROR: missing revert data
+[2026-04-29T11:59:24]   [53] ERROR: missing revert data
+[2026-04-29T12:00:25]   [54] ERROR: missing revert data
+[2026-04-29T12:01:25]   [55] ERROR: missing revert data
+[2026-04-29T12:02:26]   [56] ERROR: missing revert data
+[2026-04-29T12:03:26]   [57] ERROR: missing revert data
+[2026-04-29T12:04:27]   [58] ERROR: missing revert data
+[2026-04-29T12:05:28]   [59] ERROR: missing revert data
+[2026-04-29T12:06:29]   [60] ERROR: missing revert data
+[2026-04-29T12:07:30]   [61] ERROR: missing revert data
+[2026-04-29T12:08:30]   [62] ERROR: missing revert data
+[2026-04-29T12:09:31]   [63] ERROR: missing revert data
+[2026-04-29T12:11:33]   [65] ERROR: missing revert data
+[2026-04-29T12:12:34]   [66] ERROR: missing revert data
+[2026-04-29T12:13:35]   [67] ERROR: missing revert data
+[2026-04-29T12:14:37]   [68] ERROR: missing revert data
+[2026-04-29T12:15:37]   [69] ERROR: missing revert data
+[2026-04-29T12:16:37]   [70] ERROR: missing revert data
+[2026-04-29T12:17:38]   [71] ERROR: missing revert data
+[2026-04-29T12:18:39]   [72] ERROR: missing revert data
+[2026-04-29T12:19:40]   [73] ERROR: missing revert data
+[2026-04-29T12:21:43]   [75] ERROR: missing revert data
+[2026-04-29T12:22:44]   [76] ERROR: missing revert data
+[2026-04-29T12:23:44]   [77] ERROR: missing revert data
+[2026-04-29T12:24:46]   [78] ERROR: missing revert data
+[2026-04-29T12:25:48]   [79] ERROR: missing revert data
+[2026-04-29T12:26:48]   [80] ERROR: missing revert data
+[2026-04-29T12:27:50]   [81] ERROR: missing revert data
+[2026-04-29T12:28:50]   [82] ERROR: missing revert data
+[2026-04-29T12:29:51]   [83] ERROR: missing revert data
+[2026-04-29T12:31:54]   [85] ERROR: missing revert data
+[2026-04-29T12:32:55]   [86] ERROR: missing revert data
+[2026-04-29T12:33:56]   [87] ERROR: missing revert data
+[2026-04-29T12:34:56]   [88] ERROR: missing revert data
+[2026-04-29T12:35:57]   [89] ERROR: missing revert data
+[2026-04-29T12:36:58]   [90] ERROR: missing revert data
+[2026-04-29T12:37:58]   [91] ERROR: missing revert data
+[2026-04-29T12:38:59]   [92] ERROR: missing revert data
+[2026-04-29T12:40:00]   [93] ERROR: missing revert data
+[2026-04-29T12:41:01]   [94] ERROR: missing revert data
+[2026-04-29T12:42:01]   [95] ERROR: missing revert data
+[2026-04-29T12:43:06]   [96] ERROR: missing revert data
+[2026-04-29T12:44:07]   [97] ERROR: missing revert data
+[2026-04-29T12:45:07]   [98] ERROR: missing revert data
+[2026-04-29T12:46:08]   [99] ERROR: missing revert data
+[2026-04-29T12:47:09]   [100] ERROR: missing revert data
+[2026-04-29T12:48:09]   [101] ERROR: missing revert data
+[2026-04-29T12:49:10]   [102] ERROR: missing revert data
+[2026-04-29T12:50:11]   [103] ERROR: missing revert data
+[2026-04-29T12:52:17]   [105] ERROR: missing revert data
+[2026-04-29T12:53:18]   [106] ERROR: missing revert data
+[2026-04-29T12:54:19]   [107] ERROR: missing revert data
+[2026-04-29T12:55:19]   [108] ERROR: missing revert data
+[2026-04-29T12:56:19]   [109] ERROR: missing revert data
+[2026-04-29T12:57:20]   [110] ERROR: missing revert data
+[2026-04-29T12:58:21]   [111] ERROR: missing revert data
+[2026-04-29T13:00:29]   [113] ERROR: missing revert data
+[2026-04-29T13:01:30]   [114] ERROR: missing revert data
+[2026-04-29T13:02:31]   [115] ERROR: missing revert data
+[2026-04-29T13:03:31]   [116] ERROR: missing revert data
+[2026-04-29T13:04:32]   [117] ERROR: missing revert data
+[2026-04-29T13:05:33]   [118] ERROR: missing revert data
+[2026-04-29T13:06:33]   [119] ERROR: missing revert data
+[2026-04-29T13:07:34]   [120] ERROR: missing revert data
+[2026-04-29T13:08:34]   [121] ERROR: missing revert data
+[2026-04-29T13:09:35]   [122] ERROR: missing revert data
+[2026-04-29T13:10:35]   [123] ERROR: missing revert data
+[2026-04-29T13:11:36]   [124] ERROR: missing revert data
+[2026-04-29T13:12:36]   [125] ERROR: missing revert data
+[2026-04-29T13:13:37]   [126] ERROR: missing revert data
+[2026-04-29T13:14:37]   [127] ERROR: missing revert data
+[2026-04-29T13:15:38]   [128] ERROR: missing revert data
+[2026-04-29T13:16:39]   [129] ERROR: missing revert data
+[2026-04-29T13:17:40]   [130] ERROR: missing revert data
+[2026-04-29T13:18:40]   [131] ERROR: missing revert data
+[2026-04-29T13:20:47]   [133] ERROR: missing revert data
+[2026-04-29T13:21:49]   [134] ERROR: missing revert data
+[2026-04-29T13:22:50]   [135] ERROR: missing revert data
+[2026-04-29T13:23:50]   [136] ERROR: missing revert data
+[2026-04-29T13:24:51]   [137] ERROR: missing revert data
+[2026-04-29T13:26:53]   [139] ERROR: missing revert data
+[2026-04-29T13:27:54]   [140] ERROR: missing revert data
+[2026-04-29T13:28:55]   [141] ERROR: missing revert data
+[2026-04-29T13:29:55]   [142] ERROR: missing revert data
+[2026-04-29T13:30:56]   [143] ERROR: missing revert data
+[2026-04-29T13:31:57]   [144] ERROR: missing revert data
+[2026-04-29T13:32:58]   [145] ERROR: missing revert data
+[2026-04-29T13:33:58]   [146] ERROR: missing revert data
+[2026-04-29T13:34:59]   [147] ERROR: missing revert data
+[2026-04-29T13:36:00]   [148] ERROR: missing revert data
+[2026-04-29T13:37:00]   [149] ERROR: missing revert data
+[2026-04-29T13:38:01]   [150] ERROR: missing revert data
+[2026-04-29T13:40:04]   [152] ERROR: missing revert data
+[2026-04-29T13:41:06]   [153] ERROR: missing revert data
+[2026-04-29T13:42:08]   [154] ERROR: missing revert data
+[2026-04-29T13:43:09]   [155] ERROR: missing revert data
+[2026-04-29T13:44:10]   [156] ERROR: missing revert data
+[2026-04-29T13:46:17]   [158] ERROR: missing revert data
+[2026-04-29T13:47:18]   [159] ERROR: missing revert data
+[2026-04-29T13:48:19]   [160] ERROR: missing revert data
+[2026-04-29T13:49:20]   [161] ERROR: missing revert data
+[2026-04-29T13:50:20]   [162] ERROR: missing revert data
+[2026-04-29T13:51:21]   [163] ERROR: missing revert data
+[2026-04-29T13:53:27]   [165] ERROR: missing revert data
+[2026-04-29T13:54:28]   [166] ERROR: missing revert data
+[2026-04-29T13:55:28]   [167] ERROR: missing revert data
+[2026-04-29T13:56:30]   [168] ERROR: missing revert data
+[2026-04-29T13:57:31]   [169] ERROR: missing revert data
+[2026-04-29T13:58:39]   [170/200] MfT→POOP (via EARTH) | POOP bal: 52.921121455 | total: 756
+[2026-04-29T13:59:39]   [171] ERROR: missing revert data
+[2026-04-29T14:00:41]   [172] ERROR: missing revert data
+[2026-04-29T14:02:44]   [174] ERROR: missing revert data
+[2026-04-29T14:03:46]   [175] ERROR: missing revert data
+[2026-04-29T14:04:50]   [176] ERROR: missing revert data
+[2026-04-29T14:05:50]   [177] ERROR: missing revert data
+[2026-04-29T14:06:51]   [178] ERROR: missing revert data
+[2026-04-29T14:07:51]   [179] ERROR: missing revert data
+[2026-04-29T14:08:58]   [180] ERROR: missing revert data
+[2026-04-29T14:09:59]   [181] ERROR: missing revert data
+[2026-04-29T14:11:00]   [182] ERROR: missing revert data
+[2026-04-29T14:12:01]   [183] ERROR: missing revert data
+[2026-04-29T14:13:01]   [184] ERROR: missing revert data
+[2026-04-29T14:15:07]   [186] ERROR: missing revert data
+[2026-04-29T14:16:08]   [187] ERROR: missing revert data
+[2026-04-29T14:17:08]   [188] ERROR: missing revert data
+[2026-04-29T14:18:09]   [189] ERROR: missing revert data
+[2026-04-29T14:19:10]   [190] ERROR: missing revert data
+[2026-04-29T14:20:10]   [191] ERROR: missing revert data
+[2026-04-29T14:21:11]   [192] ERROR: missing revert data
+[2026-04-29T14:22:11]   [193] ERROR: missing revert data
+[2026-04-29T14:23:11]   [194] ERROR: missing revert data
+[2026-04-29T14:24:12]   [195] ERROR: missing revert data
+[2026-04-29T14:25:12]   [196] ERROR: missing revert data
+[2026-04-29T14:26:14]   [197] ERROR: missing revert data
+[2026-04-29T14:27:15]   [198] ERROR: missing revert data
+[2026-04-29T14:28:16]   [199] ERROR: missing revert data
+[2026-04-29T14:29:16]   [200] ERROR: missing revert data
+[2026-04-29T14:30:16] === Pair done. Moving to next. Total trades: 759 ===
+[2026-04-29T14:30:16] 
+[2026-04-29T14:30:16] === Starting pair: POOP→EARTH — 200 trades of $0.1 ===
+[2026-04-29T14:30:21]   [1/200] POOP→EARTH | EARTH bal: 0.0005903881 | total: 760
+[2026-04-29T14:40:05]   [10/200] POOP→EARTH | EARTH bal: 0.0053396797 | total: 769
+[2026-04-29T14:50:58]   [20/200] POOP→EARTH | EARTH bal: 0.0103682038 | total: 779
+[2026-04-29T15:01:41]   [30/200] POOP→EARTH | EARTH bal: 0.0152738472 | total: 789
+[2026-04-29T15:12:28]   [40/200] POOP→EARTH | EARTH bal: 0.0200238118 | total: 799
+[2026-04-29T15:23:14]   [50/200] POOP→EARTH | EARTH bal: 0.0246963414 | total: 809
+[2026-04-29T15:33:57]   [60/200] POOP→EARTH | EARTH bal: 0.0292678473 | total: 819
+[2026-04-29T15:44:41]   [70/200] POOP→EARTH | EARTH bal: 0.0333115402 | total: 829
+[2026-04-29T15:55:35]   [80/200] POOP→EARTH | EARTH bal: 0.0382374650 | total: 839
+[2026-04-29T16:06:20]   [90/200] POOP→EARTH | EARTH bal: 0.0422049168 | total: 849
+[2026-04-29T16:17:05]   [100/200] POOP→EARTH | EARTH bal: 0.0465650677 | total: 859
+[2026-04-29T16:22:21]   [105] ERROR: missing revert data
+[2026-04-29T16:23:21]   [106] ERROR: missing revert data
+[2026-04-29T16:24:22]   [107] ERROR: missing revert data
+[2026-04-29T16:27:32]   [110/200] POOP→EARTH | EARTH bal: 0.0495457013 | total: 866
+[2026-04-29T16:37:09]   [119] ERROR: missing revert data
+[2026-04-29T16:38:09]   [120] ERROR: missing revert data
+[2026-04-29T16:39:09]   [121] ERROR: missing revert data
+[2026-04-29T16:40:10]   [122] ERROR: missing revert data
+[2026-04-29T16:41:10]   [123] ERROR: missing revert data
+[2026-04-29T16:42:11]   [124] ERROR: missing revert data
+[2026-04-29T16:43:11]   [125] ERROR: missing revert data
+[2026-04-29T16:44:11]   [126] ERROR: missing revert data
+[2026-04-29T16:45:11]   [127] ERROR: missing revert data
+[2026-04-29T16:46:12]   [128] ERROR: missing revert data
+[2026-04-29T16:48:22]   [130/200] POOP→EARTH | EARTH bal: 0.0542616938 | total: 876
+[2026-04-29T16:59:08]   [140] ERROR: missing revert data
+[2026-04-29T17:00:09]   [141] ERROR: missing revert data
+[2026-04-29T17:01:09]   [142] ERROR: missing revert data
+[2026-04-29T17:02:09]   [143] ERROR: missing revert data
+[2026-04-29T17:03:10]   [144] ERROR: missing revert data
+[2026-04-29T17:04:10]   [145] ERROR: missing revert data
+[2026-04-29T17:05:10]   [146] ERROR: missing revert data
+[2026-04-29T17:06:10]   [147] ERROR: missing revert data
+[2026-04-29T17:07:10]   [148] ERROR: missing revert data
+[2026-04-29T17:08:11]   [149] ERROR: missing revert data
+[2026-04-29T17:09:16]   [150/200] POOP→EARTH | EARTH bal: 0.0585420707 | total: 886
+[2026-04-29T17:19:58]   [160/200] POOP→EARTH | EARTH bal: 0.0626315378 | total: 896
+[2026-04-29T17:24:11]   [164] ERROR: missing revert data
+[2026-04-29T17:30:43]   [170/200] POOP→EARTH | EARTH bal: 0.0663538261 | total: 905
+[2026-04-29T17:41:30]   [180/200] POOP→EARTH | EARTH bal: 0.0704114476 | total: 915
+[2026-04-29T17:52:21]   [190/200] POOP→EARTH | EARTH bal: 0.0744026885 | total: 925
+[2026-04-29T18:03:09]   [200/200] POOP→EARTH | EARTH bal: 0.0783507873 | total: 935
+[2026-04-29T18:04:09] === Pair done. Moving to next. Total trades: 935 ===
+[2026-04-29T18:04:09] 
+[2026-04-29T18:04:09] === Starting pair: EARTH→MfT — 200 trades of $0.1 ===
+[2026-04-29T18:04:15]   [1/200] EARTH→MfT | MfT bal: 152594925.18 | total: 936
+[2026-04-29T18:13:58]   [10/200] EARTH→MfT | MfT bal: 155283100.88 | total: 945
+[2026-04-29T18:24:53]   [20/200] EARTH→MfT | MfT bal: 159010733.72 | total: 955
+[2026-04-29T18:35:40]   [30/200] EARTH→MfT | MfT bal: 162380513.45 | total: 965
+[2026-04-29T18:46:30]   [40/200] EARTH→MfT | MfT bal: 165882332.53 | total: 975
+[2026-04-29T18:56:07]   [49] ERROR: missing revert data

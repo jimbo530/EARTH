@@ -1,0 +1,17 @@
+# Reactor Failure Report: CHAR
+Address: 0xc2eBe90fB9bC7897f06DC00666951Fa9a49A397A
+Time: 2026-05-07T11:32:11.763Z
+Revert: missing revert data (action="call", data=null, reason=null, transaction={ "data": "0x61461954", "from": "0xE2a4A8b9d77080c57799A94BA8eDeb2Dd6e0aC10", "to": "0xc2eBe90fB9bC7897f06DC00666951Fa9a49A397A"
+
+Code size: 9593 bytes
+timeUntilExecute: 0s (READY)
+Storage slot 0: 0x0000000000000000000000000000000000000000000000000000000069fc1159
+Native token: 0x20b048fa035d5763685d695e66adf62c5d9f5055
+Native token balance: 0.0
+Native token symbol: CHAR
+ETH balance: 0.0
+Pool count: ERROR - missing revert data (action="call", data=null, reason=null, 
+execute() staticcall NOW: STILL FAILING
+Error data: missing revert data (action="call", data=null, reason=null, transaction={ "data": "0x61461954", "to": "0xc2eBe90fB9bC7897f06DC00666951Fa9a49A397A" }, invocation=null, revert=null, code=CALL_EXCEPTION,
+
+--- END REPORT ---

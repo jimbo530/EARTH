@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html><head><title>2 - Add Pool to Reactor Prime</title>
+<style>
+  body { font-family: monospace; background: #111; color: #0f0; padding: 2em; max-width: 800px; margin: 0 auto; }
+  h1 { color: #0f0; }
+  button { font-size: 1.2em; padding: 0.5em 1.5em; background: #0a0; color: #000; border: none; cursor: pointer; margin: 0.5em 0.5em 0.5em 0; }
+  button:hover { background: #0f0; }
+  input, select { font-family: monospace; font-size: 1em; padding: 0.4em; background: #222; color: #0f0; border: 1px solid #0f0; width: 100%; box-sizing: border-box; }
+  label { display: block; margin-top: 1em; color: #0a0; }
+  #log { white-space: pre-wrap; margin-top: 1em; padding: 1em; background: #0a0a0a; border: 1px solid #333; min-height: 200px; overflow-y: auto; }
+  .warn { color: #ff0; }
+  .ok { color: #0f0; }
+  .err { color: #f44; }
+</style>
+</head><body>
+<h1>Reactor Prime V1 — Add Pool</h1>
+<p>Transfers a V3 position NFT to the Reactor (PERMANENTLY), then registers it.</p>
+<p class="warn">WARNING: This is irreversible. The LP position is locked forever.</p>
+
+<label>Reactor Prime Address:</label>
+<input id="reactorAddr" placeholder="0x..." />
+<label>V3 Position Token ID:</label>
+<input id="tokenId" placeholder="e.g. 5012345" />
+<br><br>
+<button onclick="addPool()">Transfer NFT + Register Pool</button>
+<button onclick="checkPool()">Check Position Info</button>
+<div id="log">Waiting...</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.13.4/ethers.umd.min.js"></script>
+<script>
+const REACTOR_ABI = [{"inputs":[{"internalType":"address","name":"_token","type":"address"},{"internalType":"address","name":"_pm","type":"address"},{"internalType":"address","name":"_router","type":"address"},{"internalType":"address","name":"_factory","type":"address"}],"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"uint256","name":"burned","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"deposited","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"timestamp","type":"uint256"},{"indexed":false,"internalType":"address","name":"caller","type":"address"}],"name":"Executed","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"uint256","name":"poolIndex","type":"uint256"},{"indexed":false,"internalType":"address","name":"xToken","type":"address"},{"indexed":false,"internalType":"uint256","name":"xIn","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"mftDeposited","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"xDeposited","type":"uint256"}],"name":"Fueled","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"uint256","name":"poolIndex","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"amount0","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"amount1","type":"uint256"}],"name":"LiquidityDeposited","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"uint256","name":"tokenId","type":"uint256"},{"indexed":false,"internalType":"address","name":"xToken","type":"address"},{"indexed":false,"internalType":"uint24","name":"fee","type":"uint24"}],"name":"PoolAdded","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"uint256","name":"poolIndex","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"PoolSkipped","type":"event"},{"inputs":[],"name":"COOLDOWN","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"addPool","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"admin","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"xToken","type":"address"}],"name":"canFuel","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"poolIndex","type":"uint256"},{"internalType":"uint256","name":"tokenAmount","type":"uint256"},{"internalType":"uint256","name":"xAmount","type":"uint256"}],"name":"depositLiquidity","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"execute","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"factory","outputs":[{"internalType":"contract IUniswapV3Factory","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"xToken","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"fuel","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"lastExecute","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"","type":"address"},{"internalType":"address","name":"","type":"address"},{"internalType":"uint256","name":"","type":"uint256"},{"internalType":"bytes","name":"","type":"bytes"}],"name":"onERC721Received","outputs":[{"internalType":"bytes4","name":"","type":"bytes4"}],"stateMutability":"pure","type":"function"},{"inputs":[],"name":"pm","outputs":[{"internalType":"contract INonfungiblePositionManager","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"poolCount","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"pools","outputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"},{"internalType":"address","name":"xToken","type":"address"},{"internalType":"uint24","name":"fee","type":"uint24"},{"internalType":"bool","name":"tokenIsToken0","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"poolIndex","type":"uint256"}],"name":"processPool","outputs":[{"internalType":"uint256","name":"burned","type":"uint256"},{"internalType":"uint256","name":"bought","type":"uint256"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"renounceAdmin","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"router","outputs":[{"internalType":"contract ISwapRouter02","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"timeUntilExecute","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"token","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"newAdmin","type":"address"}],"name":"transferAdmin","outputs":[],"stateMutability":"nonpayable","type":"function"}];
+const CHAIN_ID = "0x2105";
+const PM = "0x03a520b32C04BF3bEEf7BEb72E919cf822Ed34f1";
+const MFT = "0x8FB87d13B40B1A67B22ED1a17e2835fe7e3a9bA3";
+
+const PM_ABI = [
+  "function safeTransferFrom(address from, address to, uint256 tokenId)",
+  "function ownerOf(uint256 tokenId) view returns (address)",
+  "function positions(uint256 tokenId) view returns (uint96, address, address, address, uint24, int24, int24, uint128, uint256, uint256, uint128, uint128)"
+];
+
+const ERC20_ABI = ["function symbol() view returns (string)"];
+
+const log = document.getElementById('log');
+function l(msg, cls) {
+  const span = document.createElement('span');
+  span.className = cls || '';
+  span.textContent = msg + '\n';
+  log.appendChild(span);
+  log.scrollTop = log.scrollHeight;
+}
+
+async function getCtx() {
+  const provider = new ethers.BrowserProvider(window.ethereum);
+  const net = await provider.getNetwork();
+  if ('0x' + net.chainId.toString(16) !== CHAIN_ID) throw new Error('Switch to Base');
+  const signer = await provider.getSigner();
+  return { provider, signer };
+}
+
+async function checkPool() {
+  try {
+    log.textContent = '';
+    const { provider } = await getCtx();
+    const tokenId = document.getElementById('tokenId').value.trim();
+    if (!tokenId) { l('Enter token ID', 'err'); return; }
+
+    const pmC = new ethers.Contract(PM, PM_ABI, provider);
+    const pos = await pmC.positions(tokenId);
+    const token0 = pos[2], token1 = pos[3], fee = pos[4];
+
+    let sym0 = token0, sym1 = token1;
+    try { sym0 = await new ethers.Contract(token0, ERC20_ABI, provider).symbol(); } catch(_){}
+    try { sym1 = await new ethers.Contract(token1, ERC20_ABI, provider).symbol(); } catch(_){}
+
+    const owner = await pmC.ownerOf(tokenId);
+    const hasMft = token0.toLowerCase() === MFT.toLowerCase() || token1.toLowerCase() === MFT.toLowerCase();
+
+    l('Position #' + tokenId);
+    l('  Pair:    ' + sym0 + ' / ' + sym1);
+    l('  token0:  ' + token0);
+    l('  token1:  ' + token1);
+    l('  Fee:     ' + fee.toString() + ' (' + (Number(fee) / 10000) + '%)');
+    l('  Owner:   ' + owner);
+    l('  Has MfT: ' + (hasMft ? 'YES' : 'NO'), hasMft ? 'ok' : 'err');
+    if (!hasMft) l('  This position does not contain MfT — cannot add to Reactor Prime', 'err');
+  } catch(e) { l('ERROR: ' + e.message, 'err'); }
+}
+
+async function addPool() {
+  try {
+    log.textContent = '';
+    const { signer } = await getCtx();
+    const me = await signer.getAddress();
+    l('Wallet: ' + me);
+
+    const reactorAddr = document.getElementById('reactorAddr').value.trim();
+    const tokenId = document.getElementById('tokenId').value.trim();
+    if (!reactorAddr || !tokenId) { l('Fill both fields', 'err'); return; }
+
+    const pmC = new ethers.Contract(PM, PM_ABI, signer);
+
+    // Check ownership
+    const owner = await pmC.ownerOf(tokenId);
+    if (owner.toLowerCase() !== me.toLowerCase()) {
+      l('You do not own position #' + tokenId + ' (owner: ' + owner + ')', 'err');
+      return;
+    }
+
+    // Check it has MfT
+    const pos = await pmC.positions(tokenId);
+    const hasMft = pos[2].toLowerCase() === MFT.toLowerCase() || pos[3].toLowerCase() === MFT.toLowerCase();
+    if (!hasMft) { l('Position does not contain MfT', 'err'); return; }
+
+    l('');
+    l('PERMANENT: Transferring position NFT to Reactor.', 'warn');
+    l('LP is locked forever. No way to retrieve it.', 'warn');
+    l('');
+
+    // Transfer NFT
+    l('Transferring NFT #' + tokenId + '...');
+    const tx1 = await pmC.safeTransferFrom(me, reactorAddr, tokenId);
+    l('Tx: ' + tx1.hash);
+    await tx1.wait();
+    l('NFT transferred!', 'ok');
+
+    // Register pool
+    l('Registering pool...');
+    const reactor = new ethers.Contract(reactorAddr, REACTOR_ABI, signer);
+    const tx2 = await reactor.addPool(tokenId);
+    l('Tx: ' + tx2.hash);
+    await tx2.wait();
+    l('');
+    l('=== POOL REGISTERED ===', 'ok');
+    l('Position #' + tokenId + ' is now managed by Reactor Prime.');
+    l('');
+
+    // Show pool count
+    const count = await reactor.poolCount();
+    l('Total pools in reactor: ' + count.toString());
+  } catch(e) { l('ERROR: ' + e.message, 'err'); }
+}
+</script></body></html>

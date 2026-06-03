@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Fix 1% MfT/USDC Pool</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.13.2/ethers.umd.min.js"></script>
+<style>
+body { font-family: monospace; background: #111; color: #0f0; padding: 20px; max-width: 800px; margin: 0 auto; }
+button { font-family: monospace; padding: 8px 16px; margin: 4px; cursor: pointer; background: #222; color: #0f0; border: 1px solid #0f0; }
+button:hover { background: #0f0; color: #000; }
+button:disabled { opacity: 0.3; cursor: not-allowed; }
+.log { background: #000; border: 1px solid #333; padding: 10px; margin: 10px 0; max-height: 300px; overflow-y: auto; white-space: pre-wrap; font-size: 12px; }
+h2 { color: #0f0; border-bottom: 1px solid #333; padding-bottom: 4px; }
+.warn { color: #ff0; }
+.err { color: #f00; }
+.ok { color: #0f0; }
+</style>
+</head>
+<body>
+<h1>Fix Broken 1% MfT/USDC Pool</h1>
+<p>Pool: 0xcB7a140C422EFc9392FC578d1F47F721cd9DC914</p>
+<p>Problem: initialized at inverted price (tick -427359), zero liquidity</p>
+<p>Fix: deploy PoolFixer, inject L=1, swap to correct price</p>
+
+<h2>Step 0: Connect Wallet</h2>
+<button id="btnConnect" onclick="connectWallet()">Connect Wallet</button>
+<div id="walletInfo"></div>
+
+<h2>Step 1: Deploy PoolFixer</h2>
+<button id="btnDeploy" onclick="deployFixer()" disabled>Deploy PoolFixer</button>
+<div id="fixerAddr"></div>
+<p style="font-size:11px">Or paste existing address: <input id="existingFixer" style="width:370px;font-family:monospace;background:#000;color:#0f0;border:1px solid #333;" placeholder="0x..."> <button onclick="useExisting()">Use</button></p>
+
+<h2>Step 2: Fund Fixer with Dust</h2>
+<button id="btnFund" onclick="fundFixer()" disabled>Send 100 USDC units + 100 MfT units</button>
+<div class="log" id="fundLog"></div>
+
+<h2>Step 3: Fix Pool (inject L=1)</h2>
+<button id="btnFix" onclick="fixPool()" disabled>fix(pool, -887200, 887200)</button>
+<div class="log" id="fixLog"></div>
+
+<h2>Step 4: Swap USDC → MfT to Fix Price</h2>
+<p>Swap ~$2 USDC through the pool to push price to correct level</p>
+<button id="btnApproveSwap" onclick="approveSwap()" disabled>Approve USDC to Router</button>
+<button id="btnSwap" onclick="swapFix()" disabled>Swap (fix price)</button>
+<div class="log" id="swapLog"></div>
+
+<h2>Pool State</h2>
+<button onclick="checkPool()">Check Pool</button>
+<div class="log" id="poolLog"></div>
+
+<script>
+const POOL = '0xcB7a140C422EFc9392FC578d1F47F721cd9DC914';
+const USDC = '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913';
+const MFT  = '0x8FB87d13B40B1A67B22ED1a17e2835fe7e3a9bA3';
+const ROUTER = '0x2626664c2603336E57B271c5C0b26F421741e481';
+
+const FIXER_ABI = [
+  "function fix(address pool, int24 tickLower, int24 tickUpper)",
+  "function sweep(address token, address to)",
+  "function uniswapV3MintCallback(uint256, uint256, bytes)"
+];
+
+const FIXER_BYTECODE = '0x608060405234801561001057600080fd5b5061058b806100206000396000f3fe608060405234801561001057600080fd5b50600436106100415760003560e01c8063b8dc491b14610046578063d34879971461005b578063ee08c7421461006e575b600080fd5b610059610054366004610331565b610081565b005b61005961006936600461036a565b610167565b61005961007c366004610401565b610286565b6040516370a0823160e01b81523060048201526001600160a01b0383169063a9059cbb90839083906370a0823190602401602060405180830381865afa1580156100cf573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906100f39190610446565b6040516001600160e01b031960e085901b1681526001600160a01b03909216600483015260248201526044016020604051808303816000875af115801561013e573d6000803e3d6000fd5b505050506040513d601f19601f82011682018060405250810190610162919061045f565b505050565b600061017582840184610488565b905084156101fb5760405163a9059cbb60e01b81523360048201526024810186905273833589fcd6edb6e08f4c7c32d4f71b54bda029139063a9059cbb906044016020604051808303816000875af11580156101d5573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906101f9919061045f565b505b831561027f5760405163a9059cbb60e01b815233600482015260248101859052738fb87d13b40b1a67b22ed1a17e2835fe7e3a9ba39063a9059cbb906044016020604051808303816000875af1158015610259573d6000803e3d6000fd5b505050506040513d601f19601f8201168201806040525081019061027d919061045f565b505b5050505050565b60408051336020808301919091528251808303909101815281830192839052633c8a7d8d60e01b9092526001600160a01b03851691633c8a7d8d916102d791309187918791600191906044016104a5565b60408051808303816000875af11580156102f5573d6000803e3d6000fd5b505050506040513d601f19601f8201168201806040525081019061027f9190610531565b6001600160a01b038116811461032e57600080fd5b50565b6000806040838503121561034457600080fd5b823561034f81610319565b9150602083013561035f81610319565b809150509250929050565b6000806000806060858703121561038057600080fd5b8435935060208501359250604085013567ffffffffffffffff808211156103a657600080fd5b818701915087601f8301126103ba57600080fd5b8135818111156103c957600080fd5b8860208285010111156103db57600080fd5b95989497505060200194505050565b8035600281900b81146103fc57600080fd5b919050565b60008060006060848603121561041657600080fd5b833561042181610319565b925061042f602085016103ea565b915061043d604085016103ea565b90509250925092565b60006020828403121561045857600080fd5b5051919050565b60006020828403121561047157600080fd5b8151801515811461048157600080fd5b9392505050565b60006020828403121561049a57600080fd5b813561048181610319565b60018060a01b0386168152600060208660020b60208401528560020b60408401526fffffffffffffffffffffffffffffffff8516606084015260a0608084015283518060a085015260005b8181101561050c5785810183015185820160c0015282016104f0565b50600060c0828601015260c0601f19601f830116850101925050509695505050505050565b6000806040838503121561054457600080fd5b50508051602090910151909290915056fea2646970667358221220b721b5fb31837ff2cbfc40c5d7d3c29972772a000d87b10bc49418d095b9708964736f6c63430008180033';
+
+const ERC20_ABI = [
+  "function transfer(address to, uint256 amount) returns (bool)",
+  "function approve(address spender, uint256 amount) returns (bool)",
+  "function balanceOf(address) view returns (uint256)"
+];
+
+const POOL_ABI = [
+  "function slot0() view returns (uint160 sqrtPriceX96, int24 tick, uint16, uint16, uint16, uint8, bool)",
+  "function liquidity() view returns (uint128)"
+];
+
+const SWAP_ABI = [
+  "function exactInputSingle(tuple(address tokenIn, address tokenOut, uint24 fee, address recipient, uint256 amountIn, uint256 amountOutMinimum, uint160 sqrtPriceLimitX96) params) payable returns (uint256 amountOut)"
+];
+
+let signer = null;
+let fixerAddress = null;
+
+function log(id, msg, cls) {
+  const el = document.getElementById(id);
+  if (el) {
+    const span = document.createElement('span');
+    if (cls) span.className = cls;
+    span.textContent = msg + '\n';
+    el.appendChild(span);
+    el.scrollTop = el.scrollHeight;
+  }
+  console.log(msg);
+}
+
+async function connectWallet() {
+  const provider = new ethers.BrowserProvider(window.ethereum);
+  await provider.send("eth_requestAccounts", []);
+  const network = await provider.getNetwork();
+  if (network.chainId !== 8453n) {
+    alert('Switch to Base network (chainId 8453)');
+    return;
+  }
+  signer = await provider.getSigner();
+  const addr = await signer.getAddress();
+  const bal = await provider.getBalance(addr);
+  document.getElementById('walletInfo').innerHTML =
+    `<span class="ok">Connected: ${addr}<br>ETH: ${ethers.formatEther(bal)}</span>`;
+  document.getElementById('btnDeploy').disabled = false;
+}
+
+async function deployFixer() {
+  try {
+    document.getElementById('btnDeploy').disabled = true;
+    const factory = new ethers.ContractFactory(FIXER_ABI, FIXER_BYTECODE, signer);
+    const contract = await factory.deploy();
+    const tx = contract.deploymentTransaction();
+    document.getElementById('fixerAddr').innerHTML = `Deploy tx: ${tx.hash}<br>Waiting...`;
+    await contract.waitForDeployment();
+    fixerAddress = await contract.getAddress();
+    document.getElementById('fixerAddr').innerHTML =
+      `<span class="ok">PoolFixer deployed: ${fixerAddress}</span>`;
+    document.getElementById('btnFund').disabled = false;
+  } catch(e) {
+    document.getElementById('fixerAddr').innerHTML = `<span class="err">Deploy failed: ${e.message}</span>`;
+    document.getElementById('btnDeploy').disabled = false;
+  }
+}
+
+function useExisting() {
+  const addr = document.getElementById('existingFixer').value.trim();
+  if (addr && ethers.isAddress(addr)) {
+    fixerAddress = addr;
+    document.getElementById('fixerAddr').innerHTML = `<span class="ok">Using: ${fixerAddress}</span>`;
+    document.getElementById('btnFund').disabled = false;
+  } else {
+    alert('Invalid address');
+  }
+}
+
+async function fundFixer() {
+  if (!fixerAddress) return;
+  const el = 'fundLog';
+  try {
+    document.getElementById('btnFund').disabled = true;
+    const usdc = new ethers.Contract(USDC, ERC20_ABI, signer);
+    const mft = new ethers.Contract(MFT, ERC20_ABI, signer);
+
+    // Send 100 units of USDC (= 0.0001 USDC, basically dust)
+    log(el, 'Sending 100 USDC units to fixer...');
+    let tx = await usdc.transfer(fixerAddress, 100);
+    log(el, 'Tx: ' + tx.hash);
+    await tx.wait();
+    log(el, 'USDC sent', 'ok');
+
+    // Send 100 units of MfT (= 100 wei of MfT, absolute dust)
+    log(el, 'Sending 100 MfT units to fixer...');
+    tx = await mft.transfer(fixerAddress, 100);
+    log(el, 'Tx: ' + tx.hash);
+    await tx.wait();
+    log(el, 'MfT sent', 'ok');
+
+    log(el, 'Fixer funded with dust!', 'ok');
+    document.getElementById('btnFix').disabled = false;
+  } catch(e) {
+    log(el, 'Fund failed: ' + e.message, 'err');
+    document.getElementById('btnFund').disabled = false;
+  }
+}
+
+async function fixPool() {
+  if (!fixerAddress) return;
+  const el = 'fixLog';
+  try {
+    document.getElementById('btnFix').disabled = true;
+    const fixer = new ethers.Contract(fixerAddress, FIXER_ABI, signer);
+
+    log(el, 'Calling fix(pool, -887200, 887200)...');
+    log(el, 'This injects L=1 into the broken pool');
+    const tx = await fixer.fix(POOL, -887200, 887200);
+    log(el, 'Tx: ' + tx.hash);
+    await tx.wait();
+    log(el, 'Pool fixed! L=1 injected.', 'ok');
+
+    // Sweep leftover dust back
+    log(el, 'Sweeping leftover USDC...');
+    let tx2 = await fixer.sweep(USDC, await signer.getAddress());
+    await tx2.wait();
+    log(el, 'Sweeping leftover MfT...');
+    let tx3 = await fixer.sweep(MFT, await signer.getAddress());
+    await tx3.wait();
+    log(el, 'Dust swept back', 'ok');
+
+    document.getElementById('btnApproveSwap').disabled = false;
+  } catch(e) {
+    log(el, 'Fix failed: ' + e.message, 'err');
+    document.getElementById('btnFix').disabled = false;
+  }
+}
+
+async function approveSwap() {
+  const el = 'swapLog';
+  try {
+    document.getElementById('btnApproveSwap').disabled = true;
+    const usdc = new ethers.Contract(USDC, ERC20_ABI, signer);
+    // Approve $5 USDC to swap router for price fixing
+    const amount = ethers.parseUnits('5', 6);
+    log(el, 'Approving 5 USDC to SwapRouter...');
+    const tx = await usdc.approve(ROUTER, amount);
+    log(el, 'Tx: ' + tx.hash);
+    await tx.wait();
+    log(el, 'Approved', 'ok');
+    document.getElementById('btnSwap').disabled = false;
+  } catch(e) {
+    log(el, 'Approve failed: ' + e.message, 'err');
+    document.getElementById('btnApproveSwap').disabled = false;
+  }
+}
+
+function sqrtBigInt(n) {
+  if (n <= 0n) return 0n;
+  let x = n;
+  let y = (x + 1n) / 2n;
+  while (y < x) { x = y; y = (x + n / x) / 2n; }
+  return x;
+}
+
+async function swapFix() {
+  const el = 'swapLog';
+  try {
+    document.getElementById('btnSwap').disabled = true;
+    const router = new ethers.Contract(ROUTER, SWAP_ABI, signer);
+
+    // Target: MfT price ~$0.000000268
+    // 1 USDC = ~3,735,497 MfT
+    // price = token1/token0 in raw units = 3735497e18 / 1e6 = 3.735497e24
+    // sqrtPriceX96 = sqrt(price * 2^192)
+    const Q192 = 2n ** 192n;
+    const targetPrice = (3735497n * 1000000000000000000n) * Q192 / 1000000n;
+    const targetSqrt = sqrtBigInt(targetPrice);
+
+    log(el, 'Target sqrtPriceX96: ' + targetSqrt.toString());
+    log(el, 'Swapping up to 5 USDC → MfT to fix price...');
+
+    const tx = await router.exactInputSingle({
+      tokenIn: USDC,
+      tokenOut: MFT,
+      fee: 10000,
+      recipient: await signer.getAddress(),
+      amountIn: ethers.parseUnits('5', 6),
+      amountOutMinimum: 0,
+      sqrtPriceLimitX96: targetSqrt
+    });
+    log(el, 'Tx: ' + tx.hash);
+    await tx.wait();
+    log(el, 'Price fixed! Pool should now be at correct tick.', 'ok');
+    log(el, 'Now use page 2 to mint real LP position.', 'warn');
+  } catch(e) {
+    log(el, 'Swap failed: ' + e.message, 'err');
+    document.getElementById('btnSwap').disabled = false;
+  }
+}
+
+async function checkPool() {
+  const el = 'poolLog';
+  document.getElementById(el).innerHTML = '';
+  try {
+    const provider = new ethers.BrowserProvider(window.ethereum);
+    const pool = new ethers.Contract(POOL, POOL_ABI, provider);
+    const slot0 = await pool.slot0();
+    const liq = await pool.liquidity();
+
+    log(el, 'sqrtPriceX96: ' + slot0[0].toString());
+    log(el, 'tick: ' + slot0[1].toString());
+    log(el, 'liquidity: ' + liq.toString());
+
+    const tick = Number(slot0[1]);
+    if (tick < -400000) {
+      log(el, 'INVERTED PRICE - needs fixing', 'err');
+    } else if (tick > 400000) {
+      log(el, 'Price looks correct (MfT is cheap vs USDC)', 'ok');
+    } else {
+      log(el, 'Tick in moderate range', 'warn');
+    }
+
+    if (liq === 0n) {
+      log(el, 'NO LIQUIDITY - pool needs L=1 injection first', 'err');
+    } else {
+      log(el, 'Liquidity present', 'ok');
+    }
+  } catch(e) {
+    log(el, 'Error: ' + e.message, 'err');
+  }
+}
+</script>
+</body>
+</html>

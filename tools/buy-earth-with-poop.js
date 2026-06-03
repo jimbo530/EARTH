@@ -15,7 +15,7 @@ const V3_ROUTER  = '0x2626664c2603336E57B271c5C0b26F421741e481';
 const V3_FACTORY = '0x33128a8fC17869897dcE68Ed026d694621f6FDfD';
 
 const TARGET_USD = 0.10;
-const INTERVAL_MS = 60_000; // 1 minute
+const INTERVAL_MS = 600_000; // 10 minutes
 
 const ERC20_ABI = [
   'function balanceOf(address) view returns (uint256)',

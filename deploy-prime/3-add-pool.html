@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html><head><title>3 - Add Pool to Reactor Prime</title>
+<style>
+  body { font-family: monospace; background: #111; color: #0f0; padding: 2em; max-width: 800px; margin: 0 auto; }
+  h1 { color: #0f0; }
+  button { font-size: 1.2em; padding: 0.5em 1.5em; background: #0a0; color: #000; border: none; cursor: pointer; margin: 0.5em 0.5em 0.5em 0; }
+  button:hover { background: #0f0; }
+  input { font-family: monospace; font-size: 1em; padding: 0.4em; background: #222; color: #0f0; border: 1px solid #0f0; width: 100%; box-sizing: border-box; }
+  label { display: block; margin-top: 1em; color: #0a0; }
+  #log { white-space: pre-wrap; margin-top: 1em; padding: 1em; background: #0a0a0a; border: 1px solid #333; min-height: 200px; overflow-y: auto; }
+  .warn { color: #ff0; }
+  .ok { color: #0f0; }
+  .err { color: #f44; }
+  .info { color: #8af; }
+</style>
+</head><body>
+<h1>3 — Add Pool to Reactor Prime</h1>
+<p>Registers a V3 position NFT (already owned by reactor) so execute() processes it.</p>
+<p class="warn">Must be called from the admin wallet (whoever deployed the reactor).</p>
+
+<label>Reactor Prime Address:</label>
+<input id="reactor" placeholder="0x... (from step 1)" />
+<label>Position Token ID:</label>
+<input id="tokenId" placeholder="e.g. 1234567 (from step 2)" />
+<br><br>
+<button onclick="addPool()">Add Pool</button>
+<button onclick="checkPool()">Check Pool Count</button>
+<div id="log">Waiting...</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.13.4/ethers.umd.min.js"></script>
+<script>
+const REACTOR_ABI = [
+  'function addPool(uint256 tokenId)',
+  'function poolCount() view returns (uint256)',
+  'function pools(uint256) view returns (uint256 tokenId, address xToken, uint24 fee, bool tokenIsToken0)',
+  'function admin() view returns (address)',
+  'function token() view returns (address)'
+];
+const CHAIN_ID = '0x2105';
+
+const log = document.getElementById('log');
+function l(msg, cls) {
+  const span = document.createElement('span');
+  span.className = cls || '';
+  span.textContent = msg + '\n';
+  log.appendChild(span);
+  log.scrollTop = log.scrollHeight;
+}
+
+async function getSigner() {
+  if (!window.ethereum) { l('No wallet found', 'err'); return null; }
+  const provider = new ethers.BrowserProvider(window.ethereum);
+  const net = await provider.getNetwork();
+  if ('0x' + net.chainId.toString(16) !== CHAIN_ID) {
+    l('Switch to Base (chain 8453)', 'err'); return null;
+  }
+  return provider.getSigner();
+}
+
+async function addPool() {
+  try {
+    log.textContent = '';
+    const signer = await getSigner(); if (!signer) return;
+    const reactorAddr = document.getElementById('reactor').value.trim();
+    const tokenId = document.getElementById('tokenId').value.trim();
+    if (!reactorAddr || !tokenId) { l('Enter reactor address and token ID', 'err'); return; }
+
+    const reactor = new ethers.Contract(reactorAddr, REACTOR_ABI, signer);
+
+    // Verify admin
+    const admin = await reactor.admin();
+    const caller = await signer.getAddress();
+    l('Admin:  ' + admin);
+    l('Caller: ' + caller);
+    if (admin.toLowerCase() !== caller.toLowerCase()) {
+      l('WARNING: You are not the admin! Tx will revert.', 'err');
+      return;
+    }
+
+    l('');
+    l('Adding pool with tokenId ' + tokenId + '...');
+    const tx = await reactor.addPool(tokenId);
+    l('Tx: ' + tx.hash);
+    await tx.wait();
+
+    l('');
+    l('=== POOL ADDED ===', 'ok');
+
+    // Read back pool info
+    const count = await reactor.poolCount();
+    const pool = await reactor.pools(count - 1n);
+    l('Pool index: ' + (count - 1n).toString());
+    l('Token ID:   ' + pool.tokenId.toString());
+    l('xToken:     ' + pool.xToken);
+    l('Fee:        ' + pool.fee.toString());
+    l('MfT is token0: ' + pool.tokenIsToken0);
+    l('');
+    l('Reactor is live! execute() will process this pool after cooldown.', 'ok');
+  } catch(e) { l('ERROR: ' + e.message, 'err'); }
+}
+
+async function checkPool() {
+  try {
+    log.textContent = '';
+    if (!window.ethereum) { l('No wallet found', 'err'); return; }
+    const provider = new ethers.BrowserProvider(window.ethereum);
+    const reactorAddr = document.getElementById('reactor').value.trim();
+    if (!reactorAddr) { l('Enter reactor address', 'err'); return; }
+
+    const reactor = new ethers.Contract(reactorAddr, REACTOR_ABI, provider);
+    const count = await reactor.poolCount();
+    const admin = await reactor.admin();
+    const token = await reactor.token();
+
+    l('Reactor: ' + reactorAddr);
+    l('Admin:   ' + admin);
+    l('Token:   ' + token);
+    l('Pools:   ' + count.toString());
+    l('');
+
+    for (let i = 0; i < count; i++) {
+      const pool = await reactor.pools(i);
+      l('--- Pool ' + i + ' ---', 'info');
+      l('  Token ID:      ' + pool.tokenId.toString());
+      l('  xToken:        ' + pool.xToken);
+      l('  Fee:           ' + pool.fee.toString());
+      l('  MfT is token0: ' + pool.tokenIsToken0);
+    }
+    if (count === 0n) l('No pools registered yet.', 'warn');
+  } catch(e) { l('ERROR: ' + e.message, 'err'); }
+}
+</script></body></html>

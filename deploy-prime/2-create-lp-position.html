@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html><head><title>2 - Create MfT/USDC V3 Position</title>
+<style>
+  body { font-family: monospace; background: #111; color: #0f0; padding: 2em; max-width: 800px; margin: 0 auto; }
+  h1 { color: #0f0; }
+  button { font-size: 1.2em; padding: 0.5em 1.5em; background: #0a0; color: #000; border: none; cursor: pointer; margin: 0.5em 0.5em 0.5em 0; }
+  button:hover { background: #0f0; }
+  input { font-family: monospace; font-size: 1em; padding: 0.4em; background: #222; color: #0f0; border: 1px solid #0f0; width: 100%; box-sizing: border-box; }
+  label { display: block; margin-top: 1em; color: #0a0; }
+  #log { white-space: pre-wrap; margin-top: 1em; padding: 1em; background: #0a0a0a; border: 1px solid #333; min-height: 200px; overflow-y: auto; }
+  .warn { color: #ff0; }
+  .ok { color: #0f0; }
+  .err { color: #f44; }
+  .info { color: #8af; }
+</style>
+</head><body>
+<h1>2 — Create MfT/USDC V3 Position</h1>
+<p>Mints a full-range V3 position (1% fee) directly to the Reactor Prime contract.</p>
+<p class="warn">The NFT goes straight to the reactor — no transfer step needed.</p>
+
+<label>Reactor Prime Address (recipient):</label>
+<input id="reactor" placeholder="0x... (paste V2 address from step 1)" />
+<label>USDC Amount (e.g. 5 for $5):</label>
+<input id="usdcAmount" value="5" />
+<label>MfT Amount (how many MfT tokens = $5):</label>
+<input id="mftAmount" placeholder="e.g. 5000000" />
+<br><br>
+<button onclick="approveUSDC()">1. Approve USDC</button>
+<button onclick="approveMfT()">2. Approve MfT</button>
+<button onclick="createPosition()">3. Create Position</button>
+<div id="log">Waiting...</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.13.4/ethers.umd.min.js"></script>
+<script>
+const USDC  = '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913';
+const MFT   = '0x8FB87d13B40B1A67B22ED1a17e2835fe7e3a9bA3';
+const NPM   = '0x03a520b32C04BF3bEEf7BEb72E919cf822Ed34f1';
+const FEE   = 10000;  // 1%
+const TICK_LOWER = -887200;
+const TICK_UPPER =  887200;
+const CHAIN_ID = '0x2105';
+
+// USDC < MfT by address, so USDC = token0, MfT = token1
+const TOKEN0 = USDC;
+const TOKEN1 = MFT;
+
+const ERC20_ABI = [
+  'function approve(address spender, uint256 amount) returns (bool)',
+  'function allowance(address owner, address spender) view returns (uint256)',
+  'function decimals() view returns (uint8)',
+  'function balanceOf(address) view returns (uint256)'
+];
+
+const NPM_ABI = [
+  'function createAndInitializePoolIfNecessary(address token0, address token1, uint24 fee, uint160 sqrtPriceX96) payable returns (address)',
+  'function mint(tuple(address token0, address token1, uint24 fee, int24 tickLower, int24 tickUpper, uint256 amount0Desired, uint256 amount1Desired, uint256 amount0Min, uint256 amount1Min, address recipient, uint256 deadline) params) payable returns (uint256 tokenId, uint128 liquidity, uint256 amount0, uint256 amount1)',
+  'function multicall(bytes[] data) payable returns (bytes[] results)'
+];
+
+const log = document.getElementById('log');
+function l(msg, cls) {
+  const span = document.createElement('span');
+  span.className = cls || '';
+  span.textContent = msg + '\n';
+  log.appendChild(span);
+  log.scrollTop = log.scrollHeight;
+}
+
+function sqrtBigInt(n) {
+  if (n <= 0n) return 0n;
+  let x = n;
+  let y = (x + 1n) / 2n;
+  while (y < x) { x = y; y = (x + n / x) / 2n; }
+  return x;
+}
+
+async function getSigner() {
+  if (!window.ethereum) { l('No wallet found', 'err'); return null; }
+  const provider = new ethers.BrowserProvider(window.ethereum);
+  const net = await provider.getNetwork();
+  if ('0x' + net.chainId.toString(16) !== CHAIN_ID) {
+    l('Switch to Base (chain 8453)', 'err'); return null;
+  }
+  return provider.getSigner();
+}
+
+function getAmounts() {
+  const usdcStr = document.getElementById('usdcAmount').value.trim();
+  const mftStr  = document.getElementById('mftAmount').value.trim();
+  if (!usdcStr || !mftStr) { l('Enter both USDC and MfT amounts', 'err'); return null; }
+  const usdcRaw = ethers.parseUnits(usdcStr, 6);   // USDC = 6 decimals
+  const mftRaw  = ethers.parseUnits(mftStr, 18);    // MfT = 18 decimals
+  return { usdcRaw, mftRaw };
+}
+
+async function approveUSDC() {
+  try {
+    log.textContent = '';
+    const signer = await getSigner(); if (!signer) return;
+    const amounts = getAmounts(); if (!amounts) return;
+    const usdc = new ethers.Contract(USDC, ERC20_ABI, signer);
+    l('Approving ' + ethers.formatUnits(amounts.usdcRaw, 6) + ' USDC to NPM...');
+    const tx = await usdc.approve(NPM, amounts.usdcRaw);
+    l('Tx: ' + tx.hash);
+    await tx.wait();
+    l('USDC approved!', 'ok');
+  } catch(e) { l('ERROR: ' + e.message, 'err'); }
+}
+
+async function approveMfT() {
+  try {
+    log.textContent = '';
+    const signer = await getSigner(); if (!signer) return;
+    const amounts = getAmounts(); if (!amounts) return;
+    const mft = new ethers.Contract(MFT, ERC20_ABI, signer);
+    l('Approving ' + ethers.formatUnits(amounts.mftRaw, 18) + ' MfT to NPM...');
+    const tx = await mft.approve(NPM, amounts.mftRaw);
+    l('Tx: ' + tx.hash);
+    await tx.wait();
+    l('MfT approved!', 'ok');
+  } catch(e) { l('ERROR: ' + e.message, 'err'); }
+}
+
+async function createPosition() {
+  try {
+    log.textContent = '';
+    const signer = await getSigner(); if (!signer) return;
+    const amounts = getAmounts(); if (!amounts) return;
+    const reactor = document.getElementById('reactor').value.trim();
+    if (!reactor) { l('Enter reactor address', 'err'); return; }
+
+    const npm = new ethers.Contract(NPM, NPM_ABI, signer);
+
+    // Calculate sqrtPriceX96 from amounts
+    // token0 = USDC (6 dec), token1 = MfT (18 dec)
+    // price = token1_raw / token0_raw
+    // sqrtPriceX96 = sqrt(price * 2^192) = sqrt(token1_raw * 2^192 / token0_raw)
+    const Q192 = 2n ** 192n;
+    const sqrtPriceX96 = sqrtBigInt(amounts.mftRaw * Q192 / amounts.usdcRaw);
+
+    l('Token0 (USDC): ' + TOKEN0);
+    l('Token1 (MfT):  ' + TOKEN1);
+    l('Fee tier: 1% (10000)');
+    l('Range: full range (' + TICK_LOWER + ' to ' + TICK_UPPER + ')');
+    l('USDC:  ' + ethers.formatUnits(amounts.usdcRaw, 6));
+    l('MfT:   ' + ethers.formatUnits(amounts.mftRaw, 18));
+    l('Recipient: ' + reactor);
+    l('sqrtPriceX96: ' + sqrtPriceX96.toString());
+    l('');
+
+    // Encode createAndInitializePoolIfNecessary
+    const createData = npm.interface.encodeFunctionData(
+      'createAndInitializePoolIfNecessary',
+      [TOKEN0, TOKEN1, FEE, sqrtPriceX96]
+    );
+
+    // Encode mint
+    const deadline = Math.floor(Date.now() / 1000) + 600;
+    const mintData = npm.interface.encodeFunctionData('mint', [{
+      token0: TOKEN0,
+      token1: TOKEN1,
+      fee: FEE,
+      tickLower: TICK_LOWER,
+      tickUpper: TICK_UPPER,
+      amount0Desired: amounts.usdcRaw,
+      amount1Desired: amounts.mftRaw,
+      amount0Min: 0,
+      amount1Min: 0,
+      recipient: reactor,
+      deadline: deadline
+    }]);
+
+    l('Sending multicall (createPool + mint)...');
+    const tx = await npm.multicall([createData, mintData]);
+    l('Tx: ' + tx.hash);
+    const receipt = await tx.wait();
+
+    // Find tokenId from Transfer event (ERC721 mint: from 0x0)
+    const transferTopic = ethers.id('Transfer(address,address,uint256)');
+    const transferLog = receipt.logs.find(lg =>
+      lg.topics[0] === transferTopic &&
+      lg.topics.length === 4 &&
+      lg.topics[1] === ethers.zeroPadValue('0x0000000000000000000000000000000000000000', 32)
+    );
+
+    if (transferLog) {
+      const tokenId = BigInt(transferLog.topics[3]);
+      l('');
+      l('=== POSITION CREATED ===', 'ok');
+      l('Token ID: ' + tokenId.toString(), 'ok');
+      l('');
+      l('SAVE THIS TOKEN ID for step 3 (addPool).', 'warn');
+      l('NFT is owned by reactor: ' + reactor);
+    } else {
+      l('');
+      l('Position created but could not parse tokenId from logs.', 'warn');
+      l('Check the tx on BaseScan to find the tokenId.', 'warn');
+    }
+  } catch(e) { l('ERROR: ' + e.message, 'err'); }
+}
+</script></body></html>

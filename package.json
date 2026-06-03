@@ -8,11 +8,12 @@
     "serve": "npx serve deploy -l 8888"
   },
   "devDependencies": {
-    "hardhat": "^2.22.0",
-    "@nomicfoundation/hardhat-toolbox": "^5.0.0"
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "hardhat": "^2.22.0"
   },
   "dependencies": {
-    "ethers": "^6.13.0",
-    "dotenv": "^16.4.0"
+    "dotenv": "^16.6.1",
+    "ethers": "^6.16.0",
+    "twitter-api-v2": "^1.29.0"
   }
 }

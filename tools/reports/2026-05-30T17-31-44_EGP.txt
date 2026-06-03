@@ -1,0 +1,15 @@
+# Reactor Failure Report: EGP
+Address: 0x10A710fced92eB096F796F43BCCFb60884c13819
+Time: 2026-05-30T17:31:43.885Z
+Revert: missing revert data (action="call", data=null, reason=null, transaction={ "data": "0x61461954", "from": "0xE2a4A8b9d77080c57799A94BA8eDeb2Dd6e0aC10", "to": "0x10A710fced92eB096F796F43BCCFb60884c13819"
+
+Code size: 9389 bytes
+timeUntilExecute: ERROR - missing revert data (action="call", data=null, reason=null, 
+Storage slot 0: 0x000000000000000000000000000000000000000000000000000000006a16342d
+Token check: ERROR - missing revert data (action="call", data=null, reason=null, 
+ETH balance: 0.0
+Pool count: ERROR - missing revert data (action="call", data=null, reason=null, 
+execute() staticcall NOW: STILL FAILING
+Error data: missing revert data (action="call", data=null, reason=null, transaction={ "data": "0x61461954", "to": "0x10A710fced92eB096F796F43BCCFb60884c13819" }, invocation=null, revert=null, code=CALL_EXCEPTION,
+
+--- END REPORT ---

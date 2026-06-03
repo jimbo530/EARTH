@@ -96,7 +96,7 @@ The supply can only decrease over time (assuming any trading volume exists).
 
 ## Pool Structure
 
-The Reactor manages 6 V3 liquidity pools (1% fee, full range):
+The Reactor manages 9 V3 liquidity pools (1% fee, full range):
 
 | Pool | What It Means |
 |------|---------------|
@@ -106,8 +106,11 @@ The Reactor manages 6 V3 liquidity pools (1% fee, full range):
 | EARTH/MfT | Trade EARTH for memefortrees |
 | EARTH/CHAR | Trade EARTH for Biochar |
 | EARTH/POOP | Trade EARTH for POOP |
+| EARTH/BURGERS | Trade EARTH for Burgers |
+| EARTH/TGN | Trade EARTH for TGN |
+| EARTH/AZUSD | Trade EARTH for AZUSD |
 
-Every pool feeds the same Reactor. More pools = more fee sources = more burns + deeper liquidity across all pairs.
+Every pool feeds the same Reactor. More pools = more fee sources = more burns + deeper liquidity across all pairs. Each new pool also creates new arb routes between every existing pair — the network effect is multiplicative.
 
 Reactor: `0x424D8BC900C6cc22E791C01d7E92CEd149a232f7`
 
@@ -225,5 +228,65 @@ SwapRouter02:   0x2626664c2603336E57B271c5C0b26F421741e481
  More volume
  Cycle repeats
 ```
+
+## The 1% Fee Shield
+
+Most MEV sandwich attacks target low-fee pools (0.05%, 0.3%) where the cost of front-running is cheap. On a 1% pool, an attacker pays 1% on their buy and 1% on their sell — roughly 2% in fees just to execute the attack. Those fees go directly into the pool and get collected by the Reactor next cycle.
+
+For a sandwich to be profitable, the attacker must extract more than 2% from price manipulation. On thin liquidity with small swap amounts, the math doesn't work — they'd lose money trying. And even if they succeed, they just funded multiple future Reactor cycles. The "attack" is closer to a donation.
+
+The Reactor doesn't care who trades or why. Bots, humans, MEV, arbitrage — it all becomes burn fuel.
+
+---
+
+## The Multi-Pool Volume Multiplier
+
+Every pool in the network is an arb surface. When a large trade moves the price on EARTH/WETH, the EARTH/USDC, EARTH/cbBTC, EARTH/POOP, and every other pool become mispriced. Arb bots equalize across all pairs, each trade paying 1% fees.
+
+A single large buy or sell can trigger 3-5x its volume in arb activity across the pool network. More pools = more arb paths = bigger volume multiplier from any single real trade. The total fee generation across the system far exceeds what any one pool produces alone.
+
+Every pool you add doesn't just create a new trading pair — it creates new arb routes between every existing pair. The network effect is multiplicative, not additive.
+
+---
+
+## The Reactor Cascade
+
+The Reactor creates its own echo. It fires, the swap moves price, arb corrects across pools, those arb trades generate fees, those fees accumulate for 2 hours, the Reactor fires again — partially funded by its own last execution. It feeds itself.
+
+In a multi-reactor network (like the Tales of Tasern nation token ring), reactors fire sequentially — staggered 15 minutes apart across a 2-hour cycle. Each reactor's activity generates arb that deposits fees into the next reactor's pools before it fires. By the time the last reactor executes, it's collecting fees from its own last cycle plus the decaying ripples of every reactor before it. Then the cycle restarts and the first reactor picks up the tail of the last.
+
+The energy decays each step, but it never fully dies. A few cents in organic volume becomes the seed for a continuous low-frequency hum of activity across the entire network. The ripples go around the ring and come back.
+
+---
+
+## External Volume: BTC and ETH
+
+The EARTH/WETH and EARTH/cbBTC pools are connected to the two deepest, most active markets in crypto. BTC and ETH trade globally, 24/7. Any price movement on either creates arb opportunities against EARTH pools. That arb pays 1% fees. Those fees compound into locked LP. That LP ripples through the entire network.
+
+The system doesn't need internal volume to function. Global crypto markets are the engine. Game activity is bonus — it accelerates things when players are active, but the base layer grinds forever on external market activity alone.
+
+It works in both directions. BTC pumps — EARTH/cbBTC mispriced — arb corrects — fees collected. BTC dumps — same thing. Volatility is the fuel, and crypto is always volatile. The Reactor is parasitically feeding off global market activity to permanently deepen its own liquidity.
+
+---
+
+## Permanent LP Compounding
+
+Reactor positions have no withdraw function. LP is locked forever by design. Every cycle deepens liquidity that can never be pulled.
+
+Each cycle: fees collected, tokens burned, remaining swapped and deposited back as LP. That LP generates more fees next cycle. More fees means more LP deposited, which means more fees generated. The liquidity floor is permanently rising.
+
+Deeper LP means less slippage, which enables larger trades, which generates more fees, which deepens LP further. Nothing ever comes out. Every reactor across the network is a one-way valve — value enters, LP accumulates, it never leaves.
+
+---
+
+## Charity Integration
+
+Charity tokens (like CHAR/Biochar for carbon credits) plug into the same reactor network. A charity reactor builds LP and burns supply for the charity token — it doesn't route money to a foundation, it strengthens the token itself as a funding instrument.
+
+Connected to the same pool network, charity token reactors benefit from the cascade. Every arb ripple, every reactor fire deposits fee energy into the charity token's pools. The charity doesn't need donors. It needs the network to exist and trade. The reactors convert raw volume into permanent LP for real-world impact tokens.
+
+Play the game, fund carbon credits. Trade a nation token, send a kid to school. Nobody has to choose to donate — the system converts volume into impact automatically.
+
+---
 
 Built by memefortrees.base.eth
