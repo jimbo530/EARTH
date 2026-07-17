@@ -86,6 +86,12 @@ contract EARTH {
         return _rebaseIndex;
     }
 
+    /// @notice Total shares held by non-excluded holders.
+    ///         Exposed so the Reactor can guard against precision loss in rebase().
+    function totalNonExcludedShares() external view returns (uint256) {
+        return _totalNonExcludedShares;
+    }
+
     // ═══════════════════════════════════════════════════════════════════════════
     //  ERC20 Mutators
     // ═══════════════════════════════════════════════════════════════════════════
@@ -117,11 +123,15 @@ contract EARTH {
 
     /// @notice Mint `mintAmount` new tokens distributed proportionally to all non-excluded holders.
     ///         Works by increasing the global rebase index — no iteration needed.
+    /// @dev Reverts if mintAmount is too small to move the index. Callers (Reactor)
+    ///      should check totalNonExcludedShares() and either skip or accumulate.
     function rebase(uint256 mintAmount) external {
         require(msg.sender == reactor, "not reactor");
         require(_totalNonExcludedShares > 0, "no holders");
         require(mintAmount > 0, "zero mint");
-        _rebaseIndex += mintAmount * 1e18 / _totalNonExcludedShares;
+        uint256 delta = mintAmount * 1e18 / _totalNonExcludedShares;
+        require(delta > 0, "mint too small");
+        _rebaseIndex += delta;
         emit Rebase(_rebaseIndex, mintAmount);
     }
 
@@ -149,9 +159,12 @@ contract EARTH {
     // ═══════════════════════════════════════════════════════════════════════════
 
     /// @notice Exclude an address from rebase. Converts their shares to raw token balance.
+    /// @dev Idempotent — calling on an already-excluded address is a no-op.
+    ///      This lets the Reactor register multiple V3 positions in the same pair
+    ///      (e.g. different tick ranges) without reverting on the second addPool().
     function excludeFromRebase(address account) external {
         require(msg.sender == reactor, "not reactor");
-        require(!isExcluded[account], "already excluded");
+        if (isExcluded[account]) return;
 
         uint256 tokenBalance = balanceOf(account);
         uint256 currentShares = _shares[account];

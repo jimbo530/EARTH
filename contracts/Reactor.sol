@@ -13,6 +13,7 @@ interface IEARTH {
     function approve(address spender, uint256 amount) external returns (bool);
     function balanceOf(address account) external view returns (uint256);
     function transfer(address to, uint256 amount) external returns (bool);
+    function totalNonExcludedShares() external view returns (uint256);
 }
 
 interface IERC20 {
@@ -41,6 +42,7 @@ interface INonfungiblePositionManager {
         uint96, address, address, address, uint24, int24, int24, uint128,
         uint256, uint256, uint128, uint128
     );
+    function ownerOf(uint256 tokenId) external view returns (address);
 }
 
 /// @dev SwapRouter02 on Base — no deadline field
@@ -80,11 +82,20 @@ contract Reactor {
     }
     Pool[] public pools;
 
-    address public admin;      // can add pools; transfer to timelock later
+    address public admin;          // can add pools; transfer to timelock later
+    address public pendingAdmin;   // two-step transfer target — must call acceptAdmin()
+
+    /// @notice Mint amount carried over from prior execute() calls when the rebase
+    ///         delta would have rounded to zero. Distributed on the next successful rebase.
+    uint256 public undistributedMint;
 
     // ── Events ─────────────────────────────────────────────────────────────────
     event Executed(uint256 burned, uint256 minted, uint256 timestamp, address caller);
     event PoolAdded(uint256 indexed tokenId, address xToken, address poolAddr);
+    event AdminTransferProposed(address indexed pendingAdmin);
+    event AdminTransferred(address indexed previousAdmin, address indexed newAdmin);
+    event MintDeferred(uint256 amount);
+    event MintFlushed(uint256 amount);
 
     // ═══════════════════════════════════════════════════════════════════════════
     //  Constructor
@@ -107,6 +118,7 @@ contract Reactor {
     ///         Automatically excludes the V3 pool contract from rebase.
     function addPool(uint256 tokenId) external {
         require(msg.sender == admin, "not admin");
+        require(pm.ownerOf(tokenId) == address(this), "reactor does not own NFT");
 
         (, , address token0, address token1, uint24 fee, , , , , , ,) = pm.positions(tokenId);
         require(fee == 10000, "must be 1% fee tier");
@@ -131,14 +143,28 @@ contract Reactor {
         emit PoolAdded(tokenId, xToken, poolAddr);
     }
 
+    /// @notice Propose an admin transfer. The new admin must call acceptAdmin()
+    ///         to complete the transfer, preventing fat-finger bricks.
     function transferAdmin(address newAdmin) external {
         require(msg.sender == admin, "not admin");
-        admin = newAdmin;
+        pendingAdmin = newAdmin;
+        emit AdminTransferProposed(newAdmin);
+    }
+
+    function acceptAdmin() external {
+        require(msg.sender == pendingAdmin, "not pending admin");
+        address previous = admin;
+        admin = pendingAdmin;
+        pendingAdmin = address(0);
+        emit AdminTransferred(previous, admin);
     }
 
     function renounceAdmin() external {
         require(msg.sender == admin, "not admin");
+        address previous = admin;
         admin = address(0);
+        pendingAdmin = address(0);
+        emit AdminTransferred(previous, address(0));
     }
 
     // ═══════════════════════════════════════════════════════════════════════════
@@ -201,6 +227,10 @@ contract Reactor {
             totalEarthBought += earthBought;
 
             // ── 5. Deposit bought EARTH + remaining X as LP ────────────────
+            //      5% slippage tolerance protects against sandwich attacks on
+            //      the LP add — if pool ratio moves >5% within this tx, the
+            //      add (and the entire execute) reverts; nothing is lost,
+            //      next caller retries after cooldown reset.
             if (earthBought > 0 && xForLP > 0) {
                 IEARTH(address(earth)).approve(address(pm), earthBought);
                 IERC20(pool.xToken).approve(address(pm), xForLP);
@@ -213,8 +243,8 @@ contract Reactor {
                         tokenId:        pool.tokenId,
                         amount0Desired: a0d,
                         amount1Desired: a1d,
-                        amount0Min:     0,
-                        amount1Min:     0,
+                        amount0Min:     a0d * 95 / 100,
+                        amount1Min:     a1d * 95 / 100,
                         deadline:       block.timestamp
                     })
                 );
@@ -227,14 +257,27 @@ contract Reactor {
         //   (earthBurned = 0.5% of volume; earthBought ≈ value of 0.25% of volume)
         // Total fees ≈ 1% of volume → multiply by 0.3 to get 0.3% of volume
         //
+        // Carry forward any prior undistributed mint so precision loss in
+        // EARTH.rebase() (delta rounds to 0) never silently discards value.
+        //
         uint256 totalFeesInEarth = totalEarthBurned + (totalEarthBought * 2);
-        uint256 mintAmount = totalFeesInEarth * 3 / 10;
+        uint256 mintAmount = (totalFeesInEarth * 3 / 10) + undistributedMint;
+        uint256 effectiveMint = 0;
 
         if (mintAmount > 0) {
-            earth.rebase(mintAmount);
+            uint256 shares = earth.totalNonExcludedShares();
+            if (shares > 0 && mintAmount * 1e18 / shares > 0) {
+                earth.rebase(mintAmount);
+                effectiveMint = mintAmount;
+                if (undistributedMint > 0) emit MintFlushed(undistributedMint);
+                undistributedMint = 0;
+            } else {
+                undistributedMint = mintAmount;
+                emit MintDeferred(mintAmount);
+            }
         }
 
-        emit Executed(totalEarthBurned, mintAmount, block.timestamp, msg.sender);
+        emit Executed(totalEarthBurned, effectiveMint, block.timestamp, msg.sender);
     }
 
     // ═══════════════════════════════════════════════════════════════════════════
